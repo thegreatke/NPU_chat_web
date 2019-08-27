@@ -2,6 +2,18 @@
 
 You can checkout the live version of the application at https://spring-ws-chat.herokuapp.com/
 
+
+1.实现后台返回json的留言数据
+2.连接数据库，写SQL，保存留言数据
+3.使用jquerry中的jdzx与后台通信，将留言json排版到页面上 
+
+
+
+
+
+
+
+
 ## Requirements
 
 1. Java - 1.8.x
