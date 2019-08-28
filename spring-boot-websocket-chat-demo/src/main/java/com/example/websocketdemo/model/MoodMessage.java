@@ -16,22 +16,22 @@ import lombok.Data;
         /**
          * 留言的父id 若是留言则为 0，则是留言中的回复则为对应留言的id
          */
-        private int parent_id=0;
+        private int parentId=0;
 
         /**
          * 留言者
          */
-        private int answerer_Id;
+        private int answererId;
 
         /**
          * 被回复者
          */
-        private int respondent_Id;
+        private int RespondentId;
 
         /**
          * 留言日期
          */
-        private String leave_MessageDate;
+        private String MoodMessageDate;
 
         /**
          * 喜欢点赞的个数
@@ -43,19 +43,21 @@ import lombok.Data;
          */
         private String MoodMessageContent;
 
+        public MoodMessage(int mood_id, String pageName, int parentId, int answererId, int respondentId, String moodMessageDate, int likes, String moodMessageContent) {
+            this.mood_id = mood_id;
+            this.pageName = pageName;
+            this.parentId = parentId;
+            this.answererId = answererId;
+            RespondentId = respondentId;
+            MoodMessageDate = moodMessageDate;
+            this.likes = likes;
+            MoodMessageContent = moodMessageContent;
+        }
+
         public MoodMessage() {
         }
 
-        public MoodMessage(int mood_id, String pageName, int parent_id, int answerer_Id, int respondent_Id, String leave_MessageDate, int likes, String MoodMessageContent) {
-            this.mood_id = mood_id;
-            this.pageName = pageName;
-            this.parent_id = parent_id;
-            this.answerer_Id = answerer_Id;
-            this.respondent_Id = respondent_Id;
-            this.leave_MessageDate = leave_MessageDate;
-            this.likes = likes;
-            this.MoodMessageContent = MoodMessageContent;
-        }
+
     }
 
 

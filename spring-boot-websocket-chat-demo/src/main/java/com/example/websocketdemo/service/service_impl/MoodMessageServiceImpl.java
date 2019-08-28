@@ -31,7 +31,7 @@ public class MoodMessageServiceImpl implements MoodMessageService {
     UserService userService;
 
 
-    //发布心情留言功能
+    //发布某一条心情留言功能
     @Override
     public void publishMoodMessage(String MoodMessageContent, String pageName, String answerer) {
 
@@ -45,17 +45,17 @@ public class MoodMessageServiceImpl implements MoodMessageService {
     }
 
     @Override
-    public MoodMessage publishMoodMessageReply(MoodMessage MoodMessage, String respondent) {
+    public MoodMessage publishMoodMessageReply(MoodMessage moodMessage, String respondent) {
         TimeUtil timeUtil = new TimeUtil();
         String nowStr = timeUtil.getFormatDateForFive();
-        MoodMessage.setMoodMessageDate(nowStr);
-        String commentContent = MoodMessage.getMoodMessageContent();
+        moodMessage.setMoodMessageDate(nowStr);
+        String commentContent = moodMessage.getMoodMessageContent();
         if('@' == commentContent.charAt(0)){
-            MoodMessage.setMoodMessageContent(commentContent.substring(respondent.length() + 1));
+            moodMessage.setMoodMessageContent(commentContent.substring(respondent.length() + 1));
         }
-        MoodMessage.setRespondentId(userService.findIdByUsername(respondent));
-        moodMessageMapper.publishMoodMessage(MoodMessage);
-        return MoodMessage;
+        moodMessage.setRespondentId(userService.findIdByUsername(respondent));
+        moodMessageMapper.publishMoodMessage(moodMessage);
+        return moodMessage;
     }
 
     @Override
