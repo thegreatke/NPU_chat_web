@@ -54,7 +54,7 @@ public class MoodMessageServiceImpl implements MoodMessageService {
             MoodMessage.setMoodMessageContent(commentContent.substring(respondent.length() + 1));
         }
         MoodMessage.setRespondentId(userService.findIdByUsername(respondent));
-        MoodMessageMapper.publishMoodMessage(MoodMessage);
+        moodMessageMapper.publishMoodMessage(MoodMessage);
         return MoodMessage;
     }
 
@@ -74,7 +74,7 @@ public class MoodMessageServiceImpl implements MoodMessageService {
     @Override
     public JSONObject findAllMoodMessage(String pageName, int pId, String username) {
 
-        List<MoodMessage> MoodMessages = MoodMessageMapper.findAllMoodMessage(pageName, pId);
+        List<MoodMessage> MoodMessages = moodMessageMapper.findAllMoodMessage(pageName, pId);
         JSONObject returnJson,replyJson;
         JSONObject MoodMessageJson = new JSONObject();
         JSONArray replyJsonArray;
@@ -95,14 +95,14 @@ public class MoodMessageServiceImpl implements MoodMessageService {
             if(null == username){
                 MoodMessageJson.put("isLiked",0);
             } else {
-                if(!MoodMessageLikesRecordService.isLiked(pageName, MoodMessage.getId(), userService.findIdByUsername(username))){
+                if(!moodMessageLikesRecordService.isLiked(pageName, MoodMessage.getId(), userService.findIdByUsername(username))){
                     MoodMessageJson.put("isLiked",0);
                 } else {
                     MoodMessageJson.put("isLiked",1);
                 }
             }
 
-            MoodMessageReplies = MoodMessageMapper.findMoodMessageReplyByPageNameAndPid(pageName, MoodMessage.getId());
+            MoodMessageReplies = moodMessageMapper.findMoodMessageReplyByPageNameAndPid(pageName, MoodMessage.getId());
             replyJsonArray = new JSONArray();
             for(MoodMessage reply : MoodMessageReplies){
                 replyJson = new JSONObject();
@@ -123,8 +123,8 @@ public class MoodMessageServiceImpl implements MoodMessageService {
 
     @Override
     public int updateLikeByPageNameAndId(String pageName, int id) {
-        MoodMessageMapper.updateLikeByPageNameAndId(pageName, id);
-        return MoodMessageMapper.findLikesByPageNameAndId(pageName, id);
+        moodMessageMapper.updateLikeByPageNameAndId(pageName, id);
+        return moodMessageMapper.findLikesByPageNameAndId(pageName, id);
     }
 
     @Override
@@ -132,7 +132,7 @@ public class MoodMessageServiceImpl implements MoodMessageService {
 
         int answererId = userService.findIdByUsername(username);
         PageHelper.startPage(pageNum, rows);
-        List<MoodMessage> MoodMessages = MoodMessageMapper.getUserMoodMessage(answererId);
+        List<MoodMessage> MoodMessages = moodMessageMapper.getUserMoodMessage(answererId);
         PageInfo<MoodMessage> pageInfo = new PageInfo<>(MoodMessages);
         JSONObject returnJson = new JSONObject();
         returnJson.put("status",200);
@@ -145,10 +145,10 @@ public class MoodMessageServiceImpl implements MoodMessageService {
             MoodMessageJson.put("MoodMessageDate",MoodMessage.getMoodMessageDate());
             if(MoodMessage.getPId() == 0){
                 MoodMessageJson.put("MoodMessageContent",MoodMessage.getMoodMessageContent());
-                MoodMessageJson.put("replyNum",MoodMessageMapper.countReplyNumById(MoodMessage.getId()));
+                MoodMessageJson.put("replyNum",moodMessageMapper.countReplyNumById(MoodMessage.getId()));
             } else {
                 MoodMessageJson.put("MoodMessageContent","@" + userService.findUsernameById(MoodMessage.getRespondentId()) + " " + MoodMessage.getMoodMessageContent());
-                MoodMessageJson.put("replyNum",MoodMessageMapper.countReplyNumByIdAndRespondentId(MoodMessage.getId(), MoodMessage.getRespondentId()));
+                MoodMessageJson.put("replyNum",moodMessageMapper.countReplyNumByIdAndRespondentId(MoodMessage.getId(), MoodMessage.getRespondentId()));
             }
             MoodMessageJsonArray.add(MoodMessageJson);
         }
@@ -170,7 +170,7 @@ public class MoodMessageServiceImpl implements MoodMessageService {
     public JSONObject findFiveNewComment(int rows, int pageNum) {
         JSONObject returnJson = new JSONObject();
         PageHelper.startPage(pageNum, rows);
-        List<MoodMessage> fiveLeaveWords = MoodMessageMapper.findFiveNewLeaveWord();
+        List<MoodMessage> fiveLeaveWords = moodMessageMapper.findFiveNewLeaveWord();
         PageInfo<MoodMessage> pageInfo = new PageInfo<>(fiveLeaveWords);
 
         JSONArray jsonArray = new JSONArray();
@@ -202,6 +202,6 @@ public class MoodMessageServiceImpl implements MoodMessageService {
 
     @Override
     public int countMoodMessageNum() {
-        return MoodMessageMapper.countMoodMessageNum();
+        return moodMessageMapper.countMoodMessageNum();
     }
 }
