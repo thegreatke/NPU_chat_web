@@ -49,15 +49,16 @@ public class MoodController {
             return jsonObject;
         }
 
-        moodMessageService.publishMoodMessage(moodMessageContent,pageName, answerer);
+        moodMessageService.publishMoodMessage(moodMessageContent, pageName, answerer);
         return moodMessageService.findAllMoodMessage(pageName, 0, answerer);
 
     }
 
 
     /**
-     * 获得当前页的留言
+     * 获得当前页/当前用户的留言
      * @param pageName 当前页
+     * @RequestParam ("answerer")  answerer 用户名
      * @return
      */
     @GetMapping("/getPageMoodMessage")

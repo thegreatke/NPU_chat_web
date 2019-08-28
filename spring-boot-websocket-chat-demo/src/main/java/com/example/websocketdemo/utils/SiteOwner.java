@@ -7,6 +7,6 @@ package com.example.websocketdemo.utils;
  */
 public interface SiteOwner {
 
-    String SITE_OWNER = "周轲";
+    String SITE_OWNER = "西工大匿名水贴区版主——轲爷";
 
 }

@@ -168,6 +168,7 @@ public class MoodMessageServiceImpl implements MoodMessageService {
         return returnJson;
     }
 
+    //rows表示每页返回数据的行数           pageNum表示第几页
     @Override
     public JSONObject findFiveNewComment(int rows, int pageNum) {
         JSONObject returnJson = new JSONObject();
