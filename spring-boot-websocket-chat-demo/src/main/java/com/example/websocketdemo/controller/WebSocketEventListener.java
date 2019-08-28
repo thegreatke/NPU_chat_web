@@ -12,7 +12,7 @@ import org.springframework.web.socket.messaging.SessionConnectedEvent;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
 /**
- * Created by rajeevkumarsingh on 25/07/17.
+ * Created by great_KE on 25/07/17.
  */
 @Component
 public class WebSocketEventListener {

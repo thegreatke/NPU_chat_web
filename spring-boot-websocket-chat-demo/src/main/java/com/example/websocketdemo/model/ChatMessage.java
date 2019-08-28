@@ -1,7 +1,7 @@
 package com.example.websocketdemo.model;
 
 /**
- * Created by rajeevkumarsingh on 24/07/17.
+ * Created by great_KE on 24/07/17.
  */
 public class ChatMessage {
     private MessageType type;

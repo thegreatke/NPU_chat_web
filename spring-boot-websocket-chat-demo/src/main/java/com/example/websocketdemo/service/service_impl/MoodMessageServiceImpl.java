@@ -72,7 +72,7 @@ public class MoodMessageServiceImpl implements MoodMessageService {
         jsonObject.put("result",result);
         return jsonObject;
     }
-    //所有留言信息
+    //返回所有留言信息
     @Override
     public JSONObject findAllMoodMessage(String pageName, int pId, String username) {
 
@@ -92,7 +92,7 @@ public class MoodMessageServiceImpl implements MoodMessageService {
             MoodMessageJson.put("answerer",userService.findUsernameById(moodMessage.getAnswererId()));
             MoodMessageJson.put("MoodMessageDate",moodMessage.getMoodMessageDate());
             MoodMessageJson.put("likes",moodMessage.getLikes());
-            MoodMessageJson.put("avatarImgUrl",userService.getHeadPortraitUrlByUserId(moodMessage.getAnswererId()));
+//            MoodMessageJson.put("avatarImgUrl",userService.getHeadPortraitUrlByUserId(moodMessage.getAnswererId()));   //暂时不考虑头像功能
             MoodMessageJson.put("MoodMessageContent",moodMessage.getMoodMessageContent());
             if(null == username){
                 MoodMessageJson.put("isLiked",0);

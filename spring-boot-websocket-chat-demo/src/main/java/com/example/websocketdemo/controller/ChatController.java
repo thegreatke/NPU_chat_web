@@ -9,14 +9,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Created by rajeevkumarsingh on 24/07/17.
+ * Created by great_KE on 24/07/17.
  */
 @Controller
 public class ChatController {
 
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
-    public ChatMessage sendMessage( ChatMessage chatMessage) { //Payload 有效载荷的意思，便于理解
+    public ChatMessage sendMessage( @Payload ChatMessage chatMessage) { //Payload 有效载荷的意思，便于理解
         return chatMessage;
     }
 //@Payload
