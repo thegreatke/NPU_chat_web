@@ -14,7 +14,7 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-
+import com.example.websocketdemo.utils.SiteOwner;
 /**
  * @author: TheGreatKe
  * @Date: 2018/7/15 14:01
@@ -31,7 +31,7 @@ public class MoodMessageServiceImpl implements MoodMessageService {
     UserService userService;
 
 
-    //发布某一条心情留言功能
+    //发布某一条心情留言,保存功能
     @Override
     public void publishMoodMessage(String MoodMessageContent, String pageName, String answerer) {
 
@@ -44,6 +44,7 @@ public class MoodMessageServiceImpl implements MoodMessageService {
 
     }
 
+    //保存留言回复。
     @Override
     public MoodMessage publishMoodMessageReply(MoodMessage moodMessage, String respondent) {
         TimeUtil timeUtil = new TimeUtil();
@@ -58,6 +59,7 @@ public class MoodMessageServiceImpl implements MoodMessageService {
         return moodMessage;
     }
 
+    //最新留言信息
     @Override
     public JSONObject MoodMessageNewReply(MoodMessage MoodMessage, String answerer, String respondent) {
         JSONObject jsonObject = new JSONObject();
@@ -70,11 +72,11 @@ public class MoodMessageServiceImpl implements MoodMessageService {
         jsonObject.put("result",result);
         return jsonObject;
     }
-
+    //所有留言信息
     @Override
     public JSONObject findAllMoodMessage(String pageName, int pId, String username) {
 
-        List<MoodMessage> MoodMessages = moodMessageMapper.findAllMoodMessage(pageName, pId);
+        List<MoodMessage> moodMessages = moodMessageMapper.findAllMoodMessage(pageName, pId);
         JSONObject returnJson,replyJson;
         JSONObject MoodMessageJson = new JSONObject();
         JSONArray replyJsonArray;
@@ -84,25 +86,25 @@ public class MoodMessageServiceImpl implements MoodMessageService {
         returnJson = new JSONObject();
         returnJson.put("status",200);
 
-        for(MoodMessage MoodMessage : MoodMessages){
+        for(MoodMessage moodMessage : moodMessages){
             MoodMessageJson = new JSONObject();
-            MoodMessageJson.put("id",MoodMessage.getId());
-            MoodMessageJson.put("answerer",userService.findUsernameById(MoodMessage.getAnswererId()));
-            MoodMessageJson.put("MoodMessageDate",MoodMessage.getMoodMessageDate());
-            MoodMessageJson.put("likes",MoodMessage.getLikes());
-            MoodMessageJson.put("avatarImgUrl",userService.getHeadPortraitUrlByUserId(MoodMessage.getAnswererId()));
-            MoodMessageJson.put("MoodMessageContent",MoodMessage.getMoodMessageContent());
+            MoodMessageJson.put("id",moodMessage.getId());
+            MoodMessageJson.put("answerer",userService.findUsernameById(moodMessage.getAnswererId()));
+            MoodMessageJson.put("MoodMessageDate",moodMessage.getMoodMessageDate());
+            MoodMessageJson.put("likes",moodMessage.getLikes());
+            MoodMessageJson.put("avatarImgUrl",userService.getHeadPortraitUrlByUserId(moodMessage.getAnswererId()));
+            MoodMessageJson.put("MoodMessageContent",moodMessage.getMoodMessageContent());
             if(null == username){
                 MoodMessageJson.put("isLiked",0);
             } else {
-                if(!moodMessageLikesRecordService.isLiked(pageName, MoodMessage.getId(), userService.findIdByUsername(username))){
+                if(!moodMessageLikesRecordService.isLiked(pageName, moodMessage.getId(), userService.findIdByUsername(username))){
                     MoodMessageJson.put("isLiked",0);
                 } else {
                     MoodMessageJson.put("isLiked",1);
                 }
             }
 
-            MoodMessageReplies = moodMessageMapper.findMoodMessageReplyByPageNameAndPid(pageName, MoodMessage.getId());
+            MoodMessageReplies = moodMessageMapper.findMoodMessageReplyByPageNameAndPid(pageName, moodMessage.getId());
             replyJsonArray = new JSONArray();
             for(MoodMessage reply : MoodMessageReplies){
                 replyJson = new JSONObject();
@@ -120,35 +122,35 @@ public class MoodMessageServiceImpl implements MoodMessageService {
 
         return returnJson;
     }
-
+    //更新点赞数目
     @Override
     public int updateLikeByPageNameAndId(String pageName, int id) {
         moodMessageMapper.updateLikeByPageNameAndId(pageName, id);
         return moodMessageMapper.findLikesByPageNameAndId(pageName, id);
     }
-
+    //分页获得用户所有留言
     @Override
     public JSONObject getUserMoodMessage(int rows, int pageNum, String username) {
 
         int answererId = userService.findIdByUsername(username);
         PageHelper.startPage(pageNum, rows);
-        List<MoodMessage> MoodMessages = moodMessageMapper.getUserMoodMessage(answererId);
-        PageInfo<MoodMessage> pageInfo = new PageInfo<>(MoodMessages);
+        List<MoodMessage> moodMessages = moodMessageMapper.getUserMoodMessage(answererId);
+        PageInfo<MoodMessage> pageInfo = new PageInfo<>(moodMessages);
         JSONObject returnJson = new JSONObject();
         returnJson.put("status",200);
         JSONObject MoodMessageJson;
         JSONArray MoodMessageJsonArray = new JSONArray();
-        for(MoodMessage MoodMessage : MoodMessages){
+        for(MoodMessage moodMessage : moodMessages){
             MoodMessageJson = new JSONObject();
-            MoodMessageJson.put("pageName",MoodMessage.getPageName());
+            MoodMessageJson.put("pageName",moodMessage.getPageName());
             MoodMessageJson.put("answerer",username);
-            MoodMessageJson.put("MoodMessageDate",MoodMessage.getMoodMessageDate());
-            if(MoodMessage.getPId() == 0){
-                MoodMessageJson.put("MoodMessageContent",MoodMessage.getMoodMessageContent());
-                MoodMessageJson.put("replyNum",moodMessageMapper.countReplyNumById(MoodMessage.getId()));
+            MoodMessageJson.put("MoodMessageDate",moodMessage.getMoodMessageDate());
+            if(moodMessage.getPId() == 0){
+                MoodMessageJson.put("MoodMessageContent",moodMessage.getMoodMessageContent());
+                MoodMessageJson.put("replyNum",moodMessageMapper.countReplyNumById(moodMessage.getId()));
             } else {
-                MoodMessageJson.put("MoodMessageContent","@" + userService.findUsernameById(MoodMessage.getRespondentId()) + " " + MoodMessage.getMoodMessageContent());
-                MoodMessageJson.put("replyNum",moodMessageMapper.countReplyNumByIdAndRespondentId(MoodMessage.getId(), MoodMessage.getRespondentId()));
+                MoodMessageJson.put("MoodMessageContent","@" + userService.findUsernameById(moodMessage.getRespondentId()) + " " + moodMessage.getMoodMessageContent());
+                MoodMessageJson.put("replyNum",moodMessageMapper.countReplyNumByIdAndRespondentId(moodMessage.getId(), moodMessage.getRespondentId()));
             }
             MoodMessageJsonArray.add(MoodMessageJson);
         }

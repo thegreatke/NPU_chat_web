@@ -6,7 +6,7 @@ import lombok.Data;
     @Data
     public class MoodMessage {
 
-        private int mood_id;
+        private int id;
 
         /**
          * 心情的版区域，或者标签，分为学习，或者情感，生活等等
@@ -16,7 +16,7 @@ import lombok.Data;
         /**
          * 留言的父id 若是留言则为 0，则是留言中的回复则为对应留言的id
          */
-        private int parentId=0;
+        private int PId=0;
 
         /**
          * 留言者
@@ -44,14 +44,24 @@ import lombok.Data;
         private String MoodMessageContent;
 
         public MoodMessage(int mood_id, String pageName, int parentId, int answererId, int respondentId, String moodMessageDate, int likes, String moodMessageContent) {
-            this.mood_id = mood_id;
+            this.id = mood_id;
             this.pageName = pageName;
-            this.parentId = parentId;
+            this.PId = parentId;
             this.answererId = answererId;
             RespondentId = respondentId;
             MoodMessageDate = moodMessageDate;
             this.likes = likes;
             MoodMessageContent = moodMessageContent;
+        }
+
+
+        //专用构造函数
+        public MoodMessage(String pageName, int answererId, int respondentId, String leaveMessageDate, String leaveMessageContent) {
+            this.pageName = pageName;
+            this.answererId = answererId;
+            this.RespondentId = respondentId;
+            this.MoodMessageDate = leaveMessageDate;
+            this.MoodMessageContent = leaveMessageContent;
         }
 
         public MoodMessage() {
