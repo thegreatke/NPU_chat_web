@@ -26,12 +26,12 @@ DROP TABLE IF EXISTS `leave_message_record`;
 CREATE TABLE `leave_message_record` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pageName` varchar(255) NOT NULL,
-  `pId` int(255) NOT NULL,
+  `PId` int(255) NOT NULL,
   `answererId` int(11) NOT NULL,
-  `respondentId` int(11) NOT NULL,
-  `leaveMessageDate` varchar(255) NOT NULL,
+  `RespondentId` int(11) NOT NULL,
+  `MoodMessageDate` varchar(255) NOT NULL,
   `likes` int(11) NOT NULL,
-  `leaveMessageContent` text NOT NULL,
+  `MoodMessageContent` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 

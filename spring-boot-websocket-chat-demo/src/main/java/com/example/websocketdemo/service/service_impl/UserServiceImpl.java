@@ -3,11 +3,13 @@ package com.example.websocketdemo.service.service_impl;
 import com.example.websocketdemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.websocketdemo.mapper.UserMapper;
+import org.springframework.stereotype.Service;
+
+@Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
     UserMapper userMapper;
-
 
 
     @Override

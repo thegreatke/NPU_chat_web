@@ -68,6 +68,14 @@
 			<version>1.18.0</version>
 		</dependency>
 
+		<!--mysql-->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+
 		<!--json-->
 		<dependency>
 			<groupId>net.sf.json-lib</groupId>
@@ -80,15 +88,15 @@
 			<version>20160810</version>
 		</dependency>
 
-		<!--security-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.thymeleaf.extras</groupId>
-			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
-		</dependency>
+		<!--&lt;!&ndash;security&ndash;&gt;-->
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-starter-security</artifactId>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>org.thymeleaf.extras</groupId>-->
+			<!--<artifactId>thymeleaf-extras-springsecurity4</artifactId>-->
+		<!--</dependency>-->
 
 		<!--mybatis-->
 		<dependency>
@@ -102,7 +110,7 @@
 		<dependency>
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper-spring-boot-starter</artifactId>
-			<version>1.1.1</version>
+			<version>1.5.6</version>
 		</dependency>
 
 
