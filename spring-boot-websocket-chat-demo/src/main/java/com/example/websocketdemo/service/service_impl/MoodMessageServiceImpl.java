@@ -40,7 +40,7 @@ public class MoodMessageServiceImpl implements MoodMessageService {
         MoodMessageContent = JavaScriptCheck.javaScriptCheck(MoodMessageContent);//添加了前后<script>标签
         MoodMessage MoodMessage = new MoodMessage(pageName, userService.findIdByUsername(answerer), userService.findIdByUsername(SiteOwner.SITE_OWNER), nowStr, MoodMessageContent);
 
-        MoodMessageMapper.publishMoodMessage(MoodMessage);
+        moodMessageMapper.publishMoodMessage(MoodMessage);
 
     }
 

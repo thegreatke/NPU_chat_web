@@ -1,5 +1,8 @@
 package com.example.websocketdemo.service;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public interface UserService {
 
     /**
