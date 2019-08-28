@@ -70,6 +70,7 @@ public class MoodController {
 
 
 
+
     /**
      * 发布留言中的评论
      * @return
@@ -89,6 +90,19 @@ public class MoodController {
 
         return moodMessageService.MoodMessageNewReply(moodMessage, answerer, respondent);
     }
+
+
+    /**
+     * 获得最新的（每个页面为n条）的留言，使用了pagehelper分页助手
+     */
+    @GetMapping("/newMoodWord")
+    @ResponseBody
+    public JSONObject newLeaveWord(@RequestParam("rows") String rows,
+                                   @RequestParam("pageNum") String pageNum){
+        return moodMessageService.findFiveNewComment(Integer.parseInt(rows),Integer.parseInt(pageNum));
+    }
+
+
 
     /**
      * 点赞

@@ -44,7 +44,7 @@ public class MoodMessageServiceImpl implements MoodMessageService {
 
     }
 
-    //保存留言回复。
+    //保存对某个留言的回复。
     @Override
     public MoodMessage publishMoodMessageReply(MoodMessage moodMessage, String respondent) {
         TimeUtil timeUtil = new TimeUtil();
@@ -52,7 +52,7 @@ public class MoodMessageServiceImpl implements MoodMessageService {
         moodMessage.setMoodMessageDate(nowStr);
         String commentContent = moodMessage.getMoodMessageContent();
         if('@' == commentContent.charAt(0)){
-            moodMessage.setMoodMessageContent(commentContent.substring(respondent.length() + 1));
+            moodMessage.setMoodMessageContent(commentContent.substring(respondent.length() + 1));  //截取字符串的长度，决定起始位置
         }
         moodMessage.setRespondentId(userService.findIdByUsername(respondent));
         moodMessageMapper.publishMoodMessage(moodMessage);
@@ -128,7 +128,7 @@ public class MoodMessageServiceImpl implements MoodMessageService {
         moodMessageMapper.updateLikeByPageNameAndId(pageName, id);
         return moodMessageMapper.findLikesByPageNameAndId(pageName, id);
     }
-    //分页获得用户所有留言
+    //分页获得某一个用户所有留言
     @Override
     public JSONObject getUserMoodMessage(int rows, int pageNum, String username) {
 
@@ -172,21 +172,21 @@ public class MoodMessageServiceImpl implements MoodMessageService {
     @Override
     public JSONObject findFiveNewComment(int rows, int pageNum) {
         JSONObject returnJson = new JSONObject();
-        PageHelper.startPage(pageNum, rows);
+        PageHelper.startPage(pageNum, rows);  //设置页面的位置和展示的数据条目数
         List<MoodMessage> fiveLeaveWords = moodMessageMapper.findFiveNewLeaveWord();
-        PageInfo<MoodMessage> pageInfo = new PageInfo<>(fiveLeaveWords);
+        PageInfo<MoodMessage> pageInfo = new PageInfo<>(fiveLeaveWords);//包装
 
         JSONArray jsonArray = new JSONArray();
         JSONObject jsonObject;
-        for(MoodMessage MoodMessage : fiveLeaveWords){
+        for(MoodMessage moodMessage : fiveLeaveWords){
             jsonObject = new JSONObject();
-            if(MoodMessage.getPId() != 0){
-                MoodMessage.setMoodMessageContent("@" + userService.findUsernameById(MoodMessage.getRespondentId()) + " " + MoodMessage.getMoodMessageContent());
+            if(moodMessage.getPId() != 0){     //回复非版主的情况添加@someone的效果
+                moodMessage.setMoodMessageContent("@" + userService.findUsernameById(moodMessage.getRespondentId()) + " " + moodMessage.getMoodMessageContent());
             }
-            jsonObject.put("pagePath",MoodMessage.getPageName());
-            jsonObject.put("answerer",userService.findUsernameById(MoodMessage.getAnswererId()));
-            jsonObject.put("leaveWordDate",MoodMessage.getMoodMessageDate().substring(0,10));
-            jsonObject.put("leaveWordContent",MoodMessage.getMoodMessageContent());
+            jsonObject.put("pagePath",moodMessage.getPageName());
+            jsonObject.put("answerer",userService.findUsernameById(moodMessage.getAnswererId()));
+            jsonObject.put("leaveWordDate",moodMessage.getMoodMessageDate().substring(0,10));
+            jsonObject.put("leaveWordContent",moodMessage.getMoodMessageContent());
             jsonArray.add(jsonObject);
         }
 
