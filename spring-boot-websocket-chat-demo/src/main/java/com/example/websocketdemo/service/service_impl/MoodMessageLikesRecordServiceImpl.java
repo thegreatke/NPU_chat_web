@@ -17,13 +17,13 @@ public class MoodMessageLikesRecordServiceImpl implements MoodMessageLikesRecord
     @Autowired
     MoodMessageLikesRecordMapper MoodMessageLikesRecordMapper;
 
-
+    //返回一个是会否点赞的判断
     @Override
     public boolean isLiked(String pageName, int pId, int likeId) {
 
         return MoodMessageLikesRecordMapper.isLiked(pageName, pId, likeId) != null;
     }
-
+    //添加一个点赞记录
     @Override
     public void insertMoodMessageLikesRecord(MoodMessageLikesRecord MoodMessageLikesRecord) {
         MoodMessageLikesRecordMapper.insertMoodMessageLikesRecord(MoodMessageLikesRecord);
