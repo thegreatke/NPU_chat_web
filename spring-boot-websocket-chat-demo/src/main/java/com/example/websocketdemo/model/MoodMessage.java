@@ -9,7 +9,7 @@ import lombok.Data;
         private int mood_id;
 
         /**
-         * 心情页
+         * 心情的版区域，或者标签，分为学习，或者情感，生活等等
          */
         private String pageName;
 
@@ -34,7 +34,7 @@ import lombok.Data;
         private String leave_MessageDate;
 
         /**
-         * 喜欢数
+         * 喜欢点赞的个数
          */
         private int likes=0;
 
