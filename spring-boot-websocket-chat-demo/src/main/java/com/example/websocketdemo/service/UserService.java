@@ -23,6 +23,19 @@ public interface UserService {
     int findIdByUsername(String username);
 
 
+    /**
+     * 通过用户名查找id
+     * @param
+     * @return
+     */
+
+
+
+    public int login(String userName,String password);
+
+
+
+    public int regist(String userName,String password, String gender);
 //    /**
 //     * 注册用户
 //     * @param user 用户

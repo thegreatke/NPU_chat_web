@@ -23,6 +23,12 @@ public class User {
          */
         private String gender;
 
+        /**
+         * phone
+         */
+        private String phone;
+
+
 
         /**
          * 个人简介
@@ -30,9 +36,23 @@ public class User {
         private String personalBrief;
 
 
+        public User(int id, String username, String password, String gender, String phone, String personalBrief, String avatarImgUrl) {
+                this.id = id;
+                this.username = username;
+                this.password = password;
+                this.gender = gender;
+                this.phone = phone;
+                this.personalBrief = personalBrief;
+                this.avatarImgUrl = avatarImgUrl;
+        }
+
         /**
          * 头像地址
          */
         private String avatarImgUrl;
 
+        public User(String username, String password) {
+                this.username = username;
+                this.password = password;
+        }
 }

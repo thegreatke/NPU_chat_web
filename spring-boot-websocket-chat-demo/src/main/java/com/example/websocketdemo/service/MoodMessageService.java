@@ -53,7 +53,7 @@ public interface MoodMessageService {
      * 更新点赞数
      * @return 点赞数
      */
-    int updateLikeByPageNameAndId(String pageName, int id);
+    int updateLikeByPageNameAndId(String pageName, int id);//id是指留言的ID
 
     /**
      * 分页获得用户所有留言

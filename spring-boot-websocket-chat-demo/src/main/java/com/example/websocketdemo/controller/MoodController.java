@@ -34,6 +34,7 @@ public class MoodController {
      * 发表留言
      * @param moodMessageContent 留言内容
      * @param pageName 留言页
+     * @Param ("answerer") String answerer 留言者的用户名
      * @return
      */
     @PostMapping("/publishMoodMessage")
@@ -56,7 +57,7 @@ public class MoodController {
 
 
     /**
-     * 获得当前页/当前用户的留言
+     * 获得当前页并且当前用户的留言
      * @param pageName 当前页
      * @RequestParam ("answerer")  answerer 用户名
      * @return
@@ -72,13 +73,13 @@ public class MoodController {
 
 
     /**
-     * 发布留言中的评论
+     * 发布对留言中的评论
      * @return
      */
     @PostMapping("/publishMoodMessageReply")
     public JSONObject publishMoodMessageReply(MoodMessage moodMessage,
                                                @RequestParam("parentId") String parentId,
-                                               @RequestParam("respondent") String respondent,
+                                               @RequestParam("respondent") String respondent,//被回复的人
                                                @RequestParam ("answerer") String answerer){
         String username = null;
         JSONObject jsonObject;
@@ -93,11 +94,11 @@ public class MoodController {
 
 
     /**
-     * 获得最新的（每个页面为n条）的留言，使用了pagehelper分页助手
+     * 获得最新的（每个页面为n条）的所有留言，使用了pagehelper分页助手
      */
     @GetMapping("/newMoodWord")
     @ResponseBody
-    public JSONObject newLeaveWord(@RequestParam("rows") String rows,
+    public JSONObject newMoodWord(@RequestParam("rows") String rows,
                                    @RequestParam("pageNum") String pageNum){
         return moodMessageService.findFiveNewComment(Integer.parseInt(rows),Integer.parseInt(pageNum));
     }
@@ -110,13 +111,13 @@ public class MoodController {
      */
     @GetMapping("/addMoodMessageLike")
     public int addMoodMessageLike(@RequestParam("pageName") String pageName,
-                                   @RequestParam("respondentId") String respondentId,
+                                   @RequestParam("respondentId") String respondentId,//被回复的那条message的 ID主键
                                    @RequestParam ("answerer") String answerer){
 
         String username;
         TimeUtil timeUtil = new TimeUtil();
         int userId = userService.findIdByUsername(answerer);
-        MoodMessageLikesRecord moodMessageLikesRecord = new MoodMessageLikesRecord(pageName, Integer.parseInt(respondentId.substring(1)), userId, timeUtil.getFormatDateForFive());
+        MoodMessageLikesRecord moodMessageLikesRecord = new MoodMessageLikesRecord(pageName, Integer.parseInt(respondentId), userId, timeUtil.getFormatDateForFive());//去除resID.缩进1
         if(moodMessageLikesRecordService.isLiked(moodMessageLikesRecord.getPageName(), moodMessageLikesRecord.getPId(), userId)){
             logger.info("This user had clicked good for this page");
             return -2;

@@ -12,20 +12,29 @@ public class MoodMessageLikesRecord {
 
     private long id;
 
+
+
+
     /**
      * 文章页
      */
     private String pageName;
 
+
+
     /**
-     * 评论的id
+     * 评论的id  主键
      */
     private int pId;
+
+
 
     /**
      * 点赞人
      */
     private int likerId;
+
+
 
     /**
      * 点赞时间
