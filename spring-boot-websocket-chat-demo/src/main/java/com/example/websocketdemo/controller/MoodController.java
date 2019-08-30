@@ -78,14 +78,14 @@ public class MoodController {
      */
     @PostMapping("/publishMoodMessageReply")
     public JSONObject publishMoodMessageReply(MoodMessage moodMessage,
-                                               @RequestParam("parentId") String parentId,
-                                               @RequestParam("respondent") String respondent,//被回复的人
+                                               @RequestParam("parentId") String parentId, //父留言的主键PID
+                                                  @RequestParam("respondent") String respondent,//被回复的人的name
                                                @RequestParam ("answerer") String answerer){
         String username = null;
         JSONObject jsonObject;
 
         moodMessage.setAnswererId(userService.findIdByUsername(answerer));
-        moodMessage.setPId(Integer.parseInt(parentId.substring(1)));
+        moodMessage.setPId(Integer.parseInt(parentId));  //去除了substring的前面的一行缩进
         moodMessage.setMoodMessageContent(JavaScriptCheck.javaScriptCheck(moodMessage.getMoodMessageContent()));
         moodMessage = moodMessageService.publishMoodMessageReply(moodMessage, respondent);
 
@@ -102,7 +102,6 @@ public class MoodController {
                                    @RequestParam("pageNum") String pageNum){
         return moodMessageService.findFiveNewComment(Integer.parseInt(rows),Integer.parseInt(pageNum));
     }
-
 
 
     /**
