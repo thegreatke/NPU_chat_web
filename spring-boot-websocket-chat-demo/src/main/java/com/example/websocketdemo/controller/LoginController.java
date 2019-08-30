@@ -11,7 +11,7 @@ public class LoginController {
     UserService userService;
 
 
-    @PostMapping("/login")
+    @RequestMapping("/login")
     public String login(@RequestParam("userName") String userName,
                          @RequestParam("password") String password) {
 

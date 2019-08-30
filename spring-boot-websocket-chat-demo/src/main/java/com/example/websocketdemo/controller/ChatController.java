@@ -29,7 +29,7 @@ public class ChatController {
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
         return chatMessage;
     }
-    @RequestMapping("/manyman")
+    @RequestMapping("/chat")
     public String manyman(){
         return "index";
     }
