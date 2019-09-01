@@ -38,11 +38,6 @@ public class ChatController {
         return "OneToOne";
     }
 
-    @RequestMapping("/baiduYunPan")
-    public String baiduYunPan(){
-        return "baiduYunPan";
-    }
-
     @RequestMapping("/")
     public String home(){
         return "home";

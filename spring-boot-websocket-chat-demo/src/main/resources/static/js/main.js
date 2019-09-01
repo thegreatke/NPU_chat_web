@@ -34,7 +34,7 @@ function connect(event) {
 
 function onConnected() {
     // Subscribe to the Public Topic
-    stompClient.subscribe('/topic/public', onMessageReceived);
+    stompClient.subscribe('/topic/public', onMessageReceived);//客户端定义一个订阅地址，用来接收服务端的信息
 
     // Tell your username to the server
     stompClient.send("/app/chat.addUser",
@@ -56,13 +56,13 @@ function sendMessage(event) {
     var messageContent = messageInput.value.trim();
 
     if(messageContent && stompClient) {
-        var chatMessage = {
+        var chatMessage = {  //一整个的对象
             sender: username,
             content: messageInput.value,
             type: 'CHAT'
         };
 
-        stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+        stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));//JavaScript 对象转换为字符串。
         messageInput.value = '';
     }
     event.preventDefault();
@@ -76,10 +76,10 @@ function onMessageReceived(payload) {
 
     if(message.type === 'JOIN') {                       //join info
         messageElement.classList.add('event-message');
-        message.content = message.sender + ' joined!';
+        message.content = message.sender + ' 加入了聊天室!';
     } else if (message.type === 'LEAVE') {              //left info
         messageElement.classList.add('event-message');
-        message.content = message.sender + ' left!';
+        message.content = message.sender + ' 离开了聊天室!';
     } else {
         messageElement.classList.add('chat-message');   //chat info
 
