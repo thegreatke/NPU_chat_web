@@ -30,9 +30,21 @@ public class ChatController {
         return chatMessage;
     }
     @RequestMapping("/chat")
-    public String manyman(){
+    public String chat(){
         return "index";
     }
+
+
+    @MessageMapping("/chat.sendMessageOneLine")
+    @SendTo("/topic/public")
+    public ChatMessage sendMessageOneLine( @Payload ChatMessage chatMessage) { //Payload 有效载荷的意思，便于理解
+        return chatMessage;
+    }
+//@Payload
+
+
+
+
     @RequestMapping("/onetoone")
     public String onetoone(){
         return "OneToOne";

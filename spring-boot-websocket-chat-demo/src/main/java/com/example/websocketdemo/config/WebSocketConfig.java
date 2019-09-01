@@ -23,7 +23,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
 
         //   Use this for enabling a Full featured broker like RabbitMQ
-        //  broker相似于agent，大致意思就是一种服从原来大脑的低级代理。
+        //  broker相似于agent，大致意思就是一种服从原来大脑意图的低级代理。
         /*
         registry.enableStompBrokerRelay("/topic")
                 .setRelayHost("localhost")
