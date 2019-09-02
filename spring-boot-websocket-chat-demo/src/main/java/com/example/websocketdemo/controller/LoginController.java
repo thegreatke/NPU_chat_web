@@ -10,7 +10,7 @@ public class LoginController {
     @Autowired
     UserService userService;
 
-
+    @ResponseBody
     @RequestMapping("/login")
     public String login(@RequestParam("userName") String userName,
                          @RequestParam("password") String password) {
@@ -23,7 +23,7 @@ public class LoginController {
     }
 
 
-
+    @ResponseBody
     @PostMapping("/regist")
     public String regist(@RequestParam("userName") String userName,
                         @RequestParam("password") String password,
