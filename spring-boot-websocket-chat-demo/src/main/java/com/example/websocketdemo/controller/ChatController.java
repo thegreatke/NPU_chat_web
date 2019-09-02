@@ -69,12 +69,11 @@ public class ChatController {
 
 
 
+   //用来测试HTML以及AJAX
 
-
-
-    @RequestMapping("/")
+    @RequestMapping("/test")
     public String home(){
-        return "home";
-    }
+        return "zk_test";
+    }//替换为你要测试的html的页面名字， html页面需要放在templates目录下面
 
 }
