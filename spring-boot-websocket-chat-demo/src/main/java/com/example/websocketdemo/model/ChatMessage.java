@@ -7,6 +7,15 @@ public class ChatMessage {
     private MessageType type;
     private String content;
     private String sender;
+    private String room;
+
+    public String getRoom() {
+        return room;
+    }
+
+    public void setRoom(String room) {
+        this.room = room;
+    }
 
     public enum MessageType {
         CHAT,
