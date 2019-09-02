@@ -22,15 +22,18 @@ body {
 }
 
 body:before {
-    height: 50%;
+    height: 95%;
     width: 100%;
     position: absolute;
     top: 0;
     left: 0;
-    background: #128ff2;
-    content: "";
-    z-index: 0;
+    background: url(file:///E:/Autumn2019/%E9%A2%84%E5%8F%91%E6%8A%80%E6%9C%AF%E8%B5%84%E6%96%99/spring-boot-websocket-chat-demo/src/main/resources/templates/images/2.png);
+   content: "";
+    z-index: -1;
+	 -webkit-filter: blur(3px);
+    filter: blur(3px);
 }
+
 
 .clearfix:after {
     display: block;
@@ -99,7 +102,7 @@ button.primary {
 }
 
 button.accent {
-    background-color: #ff4743;
+    background-color: #006CFF;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
     color: #fff;
 }
@@ -110,7 +113,7 @@ button.accent {
 
 .username-page-container {
     background: #fff;
-    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+	    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
     border-radius: 2px;
     width: 100%;
     max-width: 500px;
