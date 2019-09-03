@@ -35,7 +35,6 @@ public class User {
          */
         private String phone;
 
-
         /**
          * 个人简介
          */

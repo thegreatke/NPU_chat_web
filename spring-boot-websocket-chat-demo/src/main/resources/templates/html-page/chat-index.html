@@ -1,31 +1,32 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
   <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><!--//解决中文乱码-->
       <title>Spring Boot WebSocket Chat Application | CalliCoder</title>
-      <link rel="stylesheet" href="/css/main.css" />
+      <link rel="stylesheet" href="../../static/css/chat-main.css" />
   </head>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="../../static/js/main.js"></script>
   <body>
     <noscript>
       <h2>Sorry! Your browser doesn't support Javascript</h2>
     </noscript>
 
     <div id="username-page">
+       
         <div class="username-page-container">
-            <h1 class="title">输入你的昵称</h1>
+          
+           <a href="index.html">	<img src="../../static/images/chat-delete.png" style="float:left; " height="30" width="30" /> </a>
+           <br>
+            <h1 class="title" align="center">输入你的学习昵称</h1>
             <form id="usernameForm" name="usernameForm">
                 <div class="form-group">
-                    <input type="text" id="name" placeholder="昵称：" autocomplete="off" class="form-control" />
+                    <input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />
                 </div>
-                <!--test-->
                 <div class="form-group">
-                    <input type="text" id="room" placeholder="频道号：" autocomplete="off" class="form-control" />
-                </div>
-                <!--test-->
-
-                <div class="form-group">
-                    <button type="submit" class="accent username-submit">Start Chatting</button>
+                    <button type="submit" class="accent username-submit"><a href="chatwimdow.html">进入学习交流</a></button>
                 </div>
             </form>
         </div>
@@ -53,8 +54,6 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-    <script src="/js/main.js"></script>
+
   </body>
 </html>
