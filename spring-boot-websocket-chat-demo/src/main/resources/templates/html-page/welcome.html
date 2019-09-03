@@ -23,7 +23,9 @@
 <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="../static/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
 <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&subset=latin-ext" rel="stylesheet">
-	<script ></script>
+	<script src="../static/js/sign-up.js">
+
+    </script>
     <script src="../static/js/sign-in.js"></script>
 	<script src="../static/jquery-3.4.1/jquery-3.4.1.js"></script>
 </head>
@@ -59,7 +61,6 @@
 			<div class="w3l_main_grid1_w3ls_grid">
 				<h3>Sign In</h3>
 					<div class="w3_agile_main_left_grid_w3_agileits">
-						<form >
 							<div class="agileits_w3layouts_user">
 								<i class="fa fa-user" aria-hidden="true"></i>
 								<input type="text" name="Name" placeholder="User Name" id="login-username" required="">
@@ -81,17 +82,16 @@
 							</div>
 							<input type="submit" value="Sign In" onclick="signIn()">
 							
-						</form>
+
 					</div>
 				</div>		
 		</div>
 	<!-- //small-dialog -->
 	<!-- small-dialog1 -->
 	<div id="small-dialog1" class="mfp-hide w3ls_small_dialog wthree_pop">
-		<div class="w3l_main_grid1_w3ls_grid">
+		<div class="w3l_main_grid1_w3ls_grid" >
 					<h3>Sign Up</h3>
 					<div class="w3_agile_main_left_grid_w3_agileits">
-						<form onsubmit="signup()">
 							<div class="agileits_w3layouts_user">
 								<i class="fa fa-user" aria-hidden="true"></i>
 								<input type="text" name="Name" placeholder="Name" required="" id="username">
@@ -100,17 +100,13 @@
 								<i class="fa fa-key" aria-hidden="true"></i>
 								<input type="password" name="Password" id="password" placeholder="Password" required="">
 							</div>
-
 							<div class="agileits_w3layouts_user">
 								<i class="fa fa-envelope-o" aria-hidden="true"></i>
 								<input type="email" name="Email" placeholder="Email" id="email" required="">
 							</div>
-							<div class="check">
-								<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>i agree to the <span>terms of services</span></label>
-							</div>
 							<input type="submit" value="Sign Up" onclick="signup()">
 
-						</form>
+
 					</div>
 				</div>
 		</div>

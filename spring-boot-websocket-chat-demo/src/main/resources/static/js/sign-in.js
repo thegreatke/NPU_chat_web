@@ -11,7 +11,14 @@ function  signIn() {
         data:{},
         datatype:"string",
         success:function(data){
-            window.location.href='index';
+
+           if(data=="login successfully!"){
+               window.location.href="index";
+           }
+           else{
+               alert(data);
+           }
+
         },
         error:function(XMLHttpRequest, textStatus, errorThrown) {
             alert(XMLHttpRequest.responseText);

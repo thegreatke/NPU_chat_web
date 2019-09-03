@@ -9,8 +9,10 @@ function  signup() {
         url:"/regist?password="+password+"&gender="+gender+"&userName="+userName,
         data:{},
         datatype:"string",
-        success:function(){
-            alert("success");
+        success:function(data){
+            alert(data);
+            if(data=="regist successfully!"){
+            document.getElementById("small-dialog1").style.display="none";}
         },
         error:function(XMLHttpRequest, textStatus, errorThrown) {
             alert(XMLHttpRequest.responseText);
