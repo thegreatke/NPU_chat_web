@@ -3,23 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
     <script src="../static/jquery-3.4.1/jquery-3.4.1.js"></script>
     <script>
-        function  signup1() {
+        function  signin1() {
 
             var userName=$('#username').val();
             var password=$('#password').val();
-            var gender=$('#gender').val();
+
 
             $.ajax({
                 type:"POST",
-                url:"/regist?password="+password+"&gender="+gender+"&userName="+userName,
+                url:"/login?userName="+userName+"&password="+password,
                 data:{},
                 datatype:"string",
                 success:function(data){
-                    document.getElementById("tip").innerHTML=data;
-                    alert(data);
+                    window.location.href='index';
                 },
                 error:function(XMLHttpRequest, textStatus, errorThrown) {
                     alert(XMLHttpRequest.responseText);
@@ -30,11 +28,11 @@
     </script>
 </head>
 <body>
-     <input id="username" type="text"/>
-     <input id="gender" type="text"/>
-     <input id="password" type="text"/>
-     <button onclick="signup1()">提交</button>
-     <span id="tip"></span>
+<input id="username" type="text"/>
+
+<input id="password" type="text"/>
+<button onclick="signin1()">提交</button>
+<span id="tip"></span>
 
 </body>
 </html>

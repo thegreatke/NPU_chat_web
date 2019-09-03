@@ -23,19 +23,21 @@
 <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="../static/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
 <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&subset=latin-ext" rel="stylesheet">
-	<script src="../static/js/sign-up.js"></script>
-    <script src="../static/js/sign-up.js"></script>
+	<script ></script>
+    <script src="../static/js/sign-in.js"></script>
 	<script src="../static/jquery-3.4.1/jquery-3.4.1.js"></script>
 </head>
 <body>
+
 	<div class="main">
+
 		<h1>NPU Chat Website</h1>
 			<div class="w3l_main_grids">
 				<div class="agile-w3ls">
 						
 						<div class="content-1">
 							<div class="inner">
-								<h2>同学，这题怎么做？</h2>
+								<h2>同学，这题怎么做？<span id="tip"></span></h2>
 								<p> 与你的同学，只是一个网站的距离</p>
 							</div>
 						</div>
@@ -57,14 +59,14 @@
 			<div class="w3l_main_grid1_w3ls_grid">
 				<h3>Sign In</h3>
 					<div class="w3_agile_main_left_grid_w3_agileits">
-						<form action="#" method="post">
+						<form >
 							<div class="agileits_w3layouts_user">
 								<i class="fa fa-user" aria-hidden="true"></i>
-								<input type="text" name="Name" placeholder="User Name" required="">
+								<input type="text" name="Name" placeholder="User Name" id="login-username" required="">
 							</div>
 							<div class="agileits_w3layouts_user">
 								<i class="fa fa-key" aria-hidden="true"></i>
-								<input type="password" name="Password" placeholder="Password" required="">
+								<input type="password" name="Password" placeholder="Password" id="login-password" required="">
 							</div>
 							<div class="agile_remember">
 								<div class="agile_remember_left">
@@ -77,7 +79,7 @@
 								</div>
 								<div class="clear"> </div>
 							</div>
-							<input type="submit" value="Sign In">
+							<input type="submit" value="Sign In" onclick="signIn()">
 							
 						</form>
 					</div>
@@ -89,7 +91,7 @@
 		<div class="w3l_main_grid1_w3ls_grid">
 					<h3>Sign Up</h3>
 					<div class="w3_agile_main_left_grid_w3_agileits">
-						<form>
+						<form onsubmit="signup()">
 							<div class="agileits_w3layouts_user">
 								<i class="fa fa-user" aria-hidden="true"></i>
 								<input type="text" name="Name" placeholder="Name" required="" id="username">
@@ -101,7 +103,7 @@
 
 							<div class="agileits_w3layouts_user">
 								<i class="fa fa-envelope-o" aria-hidden="true"></i>
-								<input type="email" name="Email" placeholder="Email" required="">
+								<input type="email" name="Email" placeholder="Email" id="email" required="">
 							</div>
 							<div class="check">
 								<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>i agree to the <span>terms of services</span></label>
