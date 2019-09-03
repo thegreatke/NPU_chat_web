@@ -19,14 +19,3 @@ function  signup() {
    })
 }
 
-function  keycheck() {
-    var password = $('#password').val();
-    var confirmpassword = $('#confirmpassword').val();
-    if(password==confirmpassword){
-        document.getElementById("keytip").innerHTML="OK!";
-
-    }
-    else{
-        document.getElementById("keytip").innerHTML="两次输入密码不一致!";
-    }
-}
