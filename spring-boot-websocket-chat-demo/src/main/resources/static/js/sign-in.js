@@ -1,7 +1,8 @@
-function  signin() {
+function  signIn() {
 
     var userName=$('#login-username').val();
     var password=$('#login-password').val();
+    var result;
 
 
     $.ajax({
@@ -10,11 +11,13 @@ function  signin() {
         data:{},
         datatype:"string",
         success:function(data){
-            window.location.href="www.baidu.com";
+            window.location.href='index';
         },
         error:function(XMLHttpRequest, textStatus, errorThrown) {
             alert(XMLHttpRequest.responseText);
         }
     })
+
+
 }
 
