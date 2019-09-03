@@ -41,6 +41,15 @@ public class User {
         private String personalBrief;
 
 
+        public User(int id, String username, String password, String gender, String phone, String avatarImgUrl) {
+                this.id = id;
+                this.username = username;
+                this.password = password;
+                this.gender = gender;
+                this.phone = phone;
+                this.avatarImgUrl = avatarImgUrl;
+        }
+
         public User(int id, String username, String password, String gender, String phone, String personalBrief, String avatarImgUrl) {
                 this.id = id;
                 this.username = username;
