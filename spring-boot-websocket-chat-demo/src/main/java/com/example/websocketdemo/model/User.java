@@ -35,13 +35,6 @@ public class User {
          */
         private String phone;
 
-        public User(int id, String username, String password, String gender) {
-                this.id = id;
-                this.username = username;
-                this.password = password;
-                this.gender = gender;
-        }
-
         /**
          * 个人简介
          */
