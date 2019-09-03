@@ -2,14 +2,14 @@ function  signup() {
 
    var userName=$('#username').val();
     var password=$('#password').val();
-    var email=$('#email').val();
+    var gender=$('#gender').val();
 
    $.ajax({
      type:"POST",
-       url:"/regist?password="+password+"&gender="+email+"&userName="+userName,
+       url:"/regist?password="+password+"&gender="+gender+"&userName="+userName,
        data:{},
        datatype:"string",
-       success:function(data){
+       success:function(){
         alert("success");
     },
        error:function(XMLHttpRequest, textStatus, errorThrown) {

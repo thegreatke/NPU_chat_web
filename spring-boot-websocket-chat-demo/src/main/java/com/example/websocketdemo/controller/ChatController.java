@@ -39,7 +39,7 @@ public class ChatController {
 
     @RequestMapping("/chat")
     public String chat(){
-        return "chat—index";
+        return "index";
     }
 
 
@@ -74,30 +74,10 @@ public class ChatController {
 //        return "zk_test";
 //    }//替换为你要测试的html的页面名字， html页面需要放在templates目录下面
 //=======
-//    @RequestMapping("/sss")
-//=======
-//    public String manyman(){
-//        return "chat";
-//    }
-
-
-
-    @RequestMapping("/index")
-//>>>>>>> 前端1.0
+    @RequestMapping("/sss")
     public String home(){
-        return "index";
+        return "test";
     }
 //>>>>>>> 前端1.0
-
-    @RequestMapping("/welcome")
-    public String welcome(){
-        return "welcome";
-    }
-
-    @RequestMapping("/forum")
-    public String forum(){
-        return "forum";
-    }
-
 
 }
