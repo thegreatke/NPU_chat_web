@@ -43,9 +43,9 @@ public class ChatController {
         return "baiduYunPan";
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/sss")
     public String home(){
-        return "home";
+        return "test";
     }
 
 }
