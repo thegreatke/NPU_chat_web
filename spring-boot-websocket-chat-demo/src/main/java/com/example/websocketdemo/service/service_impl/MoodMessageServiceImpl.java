@@ -36,7 +36,7 @@ public class MoodMessageServiceImpl implements MoodMessageService {
     public void publishMoodMessage(String MoodMessageContent, String pageName, String answerer) {
 
         TimeUtil timeUtil = new TimeUtil();
-        String nowStr = timeUtil.getFormatDateForFive();//标准时间
+        String nowStr = timeUtil.getFormatDateForFive();
         MoodMessageContent = JavaScriptCheck.javaScriptCheck(MoodMessageContent);//添加了前后<script>标签
         MoodMessage MoodMessage = new MoodMessage(pageName, userService.findIdByUsername(answerer), userService.findIdByUsername(SiteOwner.SITE_OWNER), nowStr, MoodMessageContent);
 
