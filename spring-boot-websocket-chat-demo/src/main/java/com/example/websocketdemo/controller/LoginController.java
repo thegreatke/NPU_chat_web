@@ -12,6 +12,7 @@ public class LoginController {
 
 
     @RequestMapping("/login")
+    @ResponseBody
     public String login(@RequestParam("userName") String userName,
                          @RequestParam("password") String password) {
 
@@ -25,6 +26,7 @@ public class LoginController {
 
 
     @PostMapping("/regist")
+    @ResponseBody
     public String regist(@RequestParam("userName") String userName,
                         @RequestParam("password") String password,
                          @RequestParam("gender") String gender) {
