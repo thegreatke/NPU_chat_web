@@ -31,21 +31,29 @@ public class ChatController {
     }
     @RequestMapping("/chat")
     public String manyman(){
-        return "index";
+        return "chat";
     }
+
     @RequestMapping("/onetoone")
     public String onetoone(){
         return "OneToOne";
     }
 
-    @RequestMapping("/baiduYunPan")
-    public String baiduYunPan(){
-        return "baiduYunPan";
+
+    @RequestMapping("/index")
+    public String home(){
+        return "index";
     }
 
-    @RequestMapping("/sss")
-    public String home(){
-        return "test";
+    @RequestMapping("/welcome")
+    public String welcome(){
+        return "welcome";
     }
+
+    @RequestMapping("/forum")
+    public String forum(){
+        return "forum";
+    }
+
 
 }
