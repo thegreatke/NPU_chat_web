@@ -68,6 +68,11 @@ public class ChatController {
 
 
 
+    @RequestMapping("/test")
+    public String test(){
+        return "zk_test";
+    }
+
 
 
 
