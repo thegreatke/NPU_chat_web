@@ -10,7 +10,8 @@ var connectingElement = document.querySelector('.connecting');
 
 var stompClient = null;
 var username = null;
-
+var room = null;
+var destination = null;
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
@@ -18,6 +19,9 @@ var colors = [
 
 function connect(event) {
     username = document.querySelector('#name').value.trim();//trim意思是去除字段两边多余的空格
+
+    room = document.querySelector('#room').value.trim();//频道号，trim意思是去除字段两边多余的空格
+
 
     if(username) {
         usernamePage.classList.add('hidden');    //隐藏了名字的页面
@@ -34,13 +38,27 @@ function connect(event) {
 
 function onConnected() {
     // Subscribe to the Public Topic
-    stompClient.subscribe('/topic/public', onMessageReceived);
+
+    if(room == null){
+
+    stompClient.subscribe('/topic/public', onMessageReceived);//客户端定义一个订阅地址，用来接收服务端的信息
 
     // Tell your username to the server
     stompClient.send("/app/chat.addUser",
         {},
         JSON.stringify({sender: username, type: 'JOIN'})
-    )
+    )}
+
+    else {
+        destination = "/topic/" + room;
+
+        stompClient.subscribe(destination, onMessageReceived);//客户端定义一个订阅地址，用来接收服务端的信息
+
+        // Tell your username to the server
+        stompClient.send("/app/chat.addUserOneLine",
+            {},
+            JSON.stringify({sender: username, type: 'JOIN', room: room})  //需要传入的参数
+        )}
 
     connectingElement.classList.add('hidden');
 }
@@ -56,13 +74,15 @@ function sendMessage(event) {
     var messageContent = messageInput.value.trim();
 
     if(messageContent && stompClient) {
-        var chatMessage = {
+        var chatMessage = {  //一整个的对象
             sender: username,
+            room:room,
             content: messageInput.value,
             type: 'CHAT'
         };
 
-        stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+        if(room == null) stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));//JavaScript 对象转换为字符串。
+        else stompClient.send("/app/chat.sendMessageOneLine", {}, JSON.stringify(chatMessage));//JavaScript 对象转换为字符串。
         messageInput.value = '';
     }
     event.preventDefault();
@@ -76,10 +96,10 @@ function onMessageReceived(payload) {
 
     if(message.type === 'JOIN') {                       //join info
         messageElement.classList.add('event-message');
-        message.content = message.sender + ' joined!';
+        message.content = message.sender + ' 加入了聊天室!';
     } else if (message.type === 'LEAVE') {              //left info
         messageElement.classList.add('event-message');
-        message.content = message.sender + ' left!';
+        message.content = message.sender + ' 离开了聊天室!';
     } else {
         messageElement.classList.add('chat-message');   //chat info
 

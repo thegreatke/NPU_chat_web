@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 @RestController
+@RequestMapping("/")
 public class MoodController {
 
 
