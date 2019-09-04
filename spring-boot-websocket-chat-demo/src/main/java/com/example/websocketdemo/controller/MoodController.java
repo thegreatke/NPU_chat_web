@@ -40,7 +40,8 @@ public class MoodController {
     @PostMapping("/publishMoodMessage")
     public JSONObject publishMoodMessage(@RequestParam("moodMessageContent") String moodMessageContent,
                                           @RequestParam("pageName") String pageName,
-                                          @RequestParam ("answerer") String answerer){
+                                          @RequestParam ("answerer") String answerer,
+                                            @RequestParam ("title") String title){
         JSONObject jsonObject;
         if (answerer ==null)
         {logger.info("please input something");
@@ -50,7 +51,7 @@ public class MoodController {
             return jsonObject;
         }
 
-        moodMessageService.publishMoodMessage(moodMessageContent, pageName, answerer);
+        moodMessageService.publishMoodMessage(moodMessageContent,title,pageName, answerer);
         return moodMessageService.findAllMoodMessage(pageName, 0, answerer);
 
     }

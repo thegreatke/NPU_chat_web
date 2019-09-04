@@ -33,14 +33,14 @@ public class MoodMessageServiceImpl implements MoodMessageService {
 
     //发布某一条心情留言,保存功能
     @Override
-    public void publishMoodMessage(String MoodMessageContent, String pageName, String answerer) {
+    public void publishMoodMessage(String MoodMessageContent,String title, String pageName, String answerer) {
 
         TimeUtil timeUtil = new TimeUtil();
         String nowStr = timeUtil.getFormatDateForFive();
         MoodMessageContent = JavaScriptCheck.javaScriptCheck(MoodMessageContent);//添加了前后<script>标签
-        MoodMessage MoodMessage = new MoodMessage(pageName, userService.findIdByUsername(answerer), userService.findIdByUsername(SiteOwner.SITE_OWNER), nowStr, MoodMessageContent);
+        MoodMessage moodMessage = new MoodMessage(pageName, userService.findIdByUsername(answerer), userService.findIdByUsername(SiteOwner.SITE_OWNER), nowStr, MoodMessageContent, title);
 
-        moodMessageMapper.publishMoodMessage(MoodMessage);
+        moodMessageMapper.publishMoodMessage(moodMessage);
 
     }
 
@@ -55,6 +55,7 @@ public class MoodMessageServiceImpl implements MoodMessageService {
             moodMessage.setMoodMessageContent(commentContent.substring(respondent.length() + 1));  //截取字符串的长度，决定起始位置
         }
         moodMessage.setRespondentId(userService.findIdByUsername(respondent));
+        moodMessage.setTitle(null);
         moodMessageMapper.publishMoodMessage(moodMessage);
         return moodMessage;
     }
