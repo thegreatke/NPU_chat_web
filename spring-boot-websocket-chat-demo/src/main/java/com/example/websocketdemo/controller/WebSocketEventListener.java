@@ -30,6 +30,7 @@ public class WebSocketEventListener {
     @EventListener
     public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
+        String userroom = (String) headerAccessor.getSessionAttributes().get("room");
 
         String username = (String) headerAccessor.getSessionAttributes().get("username");
         if(username != null) {
@@ -39,7 +40,13 @@ public class WebSocketEventListener {
             chatMessage.setType(ChatMessage.MessageType.LEAVE);
             chatMessage.setSender(username);
 
-            messagingTemplate.convertAndSend("/topic/public", chatMessage);
+            if(userroom == null) messagingTemplate.convertAndSend("/topic/public", chatMessage);
+            else {
+
+                String destination = "/topic/" + userroom;
+                messagingTemplate.convertAndSend(destination, chatMessage);
+
+            }
         }
     }
 }
