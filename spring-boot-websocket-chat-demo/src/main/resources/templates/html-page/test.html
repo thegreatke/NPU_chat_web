@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
-    <script src="../static/jquery-3.4.1/jquery-3.4.1.js"></script>
+    <script src="../js/sign-up.js"></script>
+    <script src="../jquery-3.4.1/jquery-3.4.1.js"></script>
     <script>
-        function  signup1() {
+
+        function  signup() {
 
             var userName=$('#username').val();
             var password=$('#password').val();
@@ -17,9 +18,8 @@
                 url:"/regist?password="+password+"&gender="+gender+"&userName="+userName,
                 data:{},
                 datatype:"string",
-                success:function(data){
-                    document.getElementById("tip").innerHTML=data;
-                    alert(data);
+                success:function(){
+                    alert("success");
                 },
                 error:function(XMLHttpRequest, textStatus, errorThrown) {
                     alert(XMLHttpRequest.responseText);
@@ -33,8 +33,7 @@
      <input id="username" type="text"/>
      <input id="gender" type="text"/>
      <input id="password" type="text"/>
-     <button onclick="signup1()">提交</button>
-     <span id="tip"></span>
+     <button onclick="signup()">提交</button>
 
 </body>
 </html>

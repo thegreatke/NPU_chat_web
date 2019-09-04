@@ -7,17 +7,18 @@
     <script>
         function  signin1() {
 
-            var userName=$('#username').val();
-            var password=$('#password').val();
-
-
+            var moodMessageContent=$('#moodMessageContent').val();
+            var pageName=$('#pageName').val();
+            var answerer=$('#answerer').val();
             $.ajax({
                 type:"POST",
-                url:"/login?userName="+userName+"&password="+password,
+                url:"/publishMoodMessage?"+"moodMessageContent="+moodMessageContent+"&pageName="+pageName+"&answerer="+answerer,
                 data:{},
                 datatype:"string",
                 success:function(data){
-                    window.location.href='index';
+                    //window.location.href='index';
+                    var status = data.status;
+                    alert(data.pageName);
                 },
                 error:function(XMLHttpRequest, textStatus, errorThrown) {
                     alert(XMLHttpRequest.responseText);
@@ -28,9 +29,9 @@
     </script>
 </head>
 <body>
-<input id="username" type="text"/>
-
-<input id="password" type="text"/>
+<input id="moodMessageContent" type="text"/><br>
+<input id="pageName" type="text"/><br>
+<input id="answerer" type="text"/><br>
 <button onclick="signin1()">提交</button>
 <span id="tip"></span>
 

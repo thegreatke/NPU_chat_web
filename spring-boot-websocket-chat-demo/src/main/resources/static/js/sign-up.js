@@ -2,7 +2,7 @@ function  signup() {
 
    var userName=$('#username').val();
     var password=$('#password').val();
-    var gender=$('#email').val();
+    var email=$('#email').val();
 
     $.ajax({
         type:"POST",
