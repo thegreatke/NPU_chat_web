@@ -31,14 +31,16 @@
       }
 
       body:before {
-          height: 50%;
+          height: 95%;
           width: 100%;
           position: absolute;
           top: 0;
           left: 0;
-          background: #128ff2;
+          background: url(../../static/images/chat-2.png);
           content: "";
-          z-index: 0;
+          z-index: -1;
+          -webkit-filter: blur(3px);
+          filter: blur(3px);
       }
 
       .clearfix:after {
@@ -108,7 +110,7 @@
       }
 
       button.accent {
-          background-color: #ff4743;
+          background-color: #006cff;
           box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
           color: #fff;
       }
@@ -305,6 +307,11 @@
               font-size: 1.1em;
           }
       }
+
+      #column {
+          background: grey;
+          opacity:0.4;
+      }
   </style>
   <body>
     <noscript>
@@ -325,14 +332,14 @@
                 </div>
                 <!--test-->
                 <div class="form-group">
-                    <button type="submit" class="accent username-submit">Start Chatting</button>
+                    <button type="submit" class="accent username-submit">开始学习交流</button>
                 </div>
             </form>
         </div>
     </div>
 
     <div id="chat-page" class="hidden">
-        <div class="chat-container">
+        <div id="column" class="chat-container">
             <div class="chat-header">
                <a href="/chat">	<img src="../../static/images/chat-delete.png" style="float:left; " height="30" width="30" /> </a>
                 <h2>NPU匿名聊天Demo</h2>
