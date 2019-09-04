@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
         package com.example.websocketdemo.controller;
 
@@ -10,6 +11,19 @@
         import javax.servlet.http.Cookie;
         import javax.servlet.http.HttpServletRequest;
         import javax.servlet.http.HttpServletResponse;
+=======
+package com.example.websocketdemo.controller;
+
+import com.example.websocketdemo.model.User;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+>>>>>>> parent of 3fc887e... Revert "123"
 
 @Controller
 public class CookieController {
@@ -42,4 +56,8 @@ public class CookieController {
             return "loginUser";
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> parent of 3fc887e... Revert "123"
