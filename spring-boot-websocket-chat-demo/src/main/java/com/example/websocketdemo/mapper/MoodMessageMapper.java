@@ -40,7 +40,7 @@ public interface MoodMessageMapper {
     @Select("select count(*) from leave_message_record where PId=#{id} and respondentId=#{respondentId}")
     int countReplyNumByIdAndRespondentId(@Param("id") int id, @Param("respondentId") int respondentId);
 
-    @Select("select pageName,PId,answererId,respondentId,MoodMessageDate,MoodMessageContent from leave_message_record order by id desc")
+    @Select("select id,pageName,PId,answererId,respondentId,MoodMessageDate,MoodMessageContent,title from leave_message_record order by id desc")
     List<MoodMessage> findFiveNewLeaveWord();
 
     @Select("select count(*) from leave_message_record")

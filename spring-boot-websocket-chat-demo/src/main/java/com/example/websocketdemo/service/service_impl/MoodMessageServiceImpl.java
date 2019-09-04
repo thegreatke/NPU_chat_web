@@ -184,23 +184,28 @@ public class MoodMessageServiceImpl implements MoodMessageService {
             if(moodMessage.getPId() != 0){     //回复非版主的情况添加@someone的效果
                 moodMessage.setMoodMessageContent("@" + userService.findUsernameById(moodMessage.getRespondentId()) + " " + moodMessage.getMoodMessageContent());
             }
-            jsonObject.put("pagePath",moodMessage.getPageName());
+            jsonObject.put("id",moodMessage.getId());
+            jsonObject.put("pid",moodMessage.getPId());
+
+            jsonObject.put("pageName",moodMessage.getPageName());
+            jsonObject.put("title",moodMessage.getTitle());
+
             jsonObject.put("answerer",userService.findUsernameById(moodMessage.getAnswererId()));
-            jsonObject.put("leaveWordDate",moodMessage.getMoodMessageDate().substring(0,10));
-            jsonObject.put("leaveWordContent",moodMessage.getMoodMessageContent());
+            jsonObject.put("leaveWordDate",moodMessage.getMoodMessageDate());//.substring(0,10)
+            jsonObject.put("moodWordContent",moodMessage.getMoodMessageContent());
             jsonArray.add(jsonObject);
         }
 
         returnJson.put("status",200);
         returnJson.put("result",jsonArray);
-        JSONObject pageJson = new JSONObject();
-        pageJson.put("pageNum",pageInfo.getPageNum());
-        pageJson.put("pageSize",pageInfo.getPageSize());
-        pageJson.put("total",pageInfo.getTotal());
-        pageJson.put("pages",pageInfo.getPages());
-        pageJson.put("isFirstPage",pageInfo.isIsFirstPage());
-        pageJson.put("isLastPage",pageInfo.isIsLastPage());
-        returnJson.put("pageInfo",pageJson);
+//        JSONObject pageJson = new JSONObject();
+//        pageJson.put("pageNum",pageInfo.getPageNum());
+//        pageJson.put("pageSize",pageInfo.getPageSize());
+//        pageJson.put("total",pageInfo.getTotal());
+//        pageJson.put("pages",pageInfo.getPages());
+//        pageJson.put("isFirstPage",pageInfo.isIsFirstPage());
+//        pageJson.put("isLastPage",pageInfo.isIsLastPage());
+//        returnJson.put("pageInfo",pageJson);
         return returnJson;
     }
 
