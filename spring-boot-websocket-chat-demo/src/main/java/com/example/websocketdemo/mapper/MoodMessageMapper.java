@@ -15,8 +15,8 @@ import java.util.List;
 @Repository
 public interface MoodMessageMapper {
 
-    @Insert("insert into leave_message_record(pageName,PId,answererId,respondentId,MoodMessageDate,likes,MoodMessageContent) " +
-            "values(#{pageName},#{PId},#{answererId},#{respondentId},#{MoodMessageDate},#{likes},#{MoodMessageContent})")
+    @Insert("insert into leave_message_record(pageName,PId,answererId,respondentId,MoodMessageDate,likes,MoodMessageContent,title) " +
+            "values(#{pageName},#{PId},#{answererId},#{respondentId},#{MoodMessageDate},#{likes},#{MoodMessageContent},#{title})")
     void publishMoodMessage(MoodMessage MoodMessage);
 
     @Select("select * from leave_message_record where pageName=#{pageName} and PId=#{PId} order by id desc")
