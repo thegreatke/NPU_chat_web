@@ -84,26 +84,104 @@
 <div>
 
 
-    <div style="padding-right:150px; padding-left:150px;padding-top: 10px;">
-        <article class="format-standard type-post hentry clearfix" ground>
-            <h3 class="post-title" id="bbs-title">
-                <a href="#">新生必看的福利贴！！！满满的都是福利鸭</a>
-            </h3>
+    <div class="container" style="padding-right:150px; padding-left:150px;padding-top: 10px;">
+        <div class="box" name="box">
+            <article class="format-standard type-post hentry clearfix" ground>
 
-            <div class="post-meta clearfix" id="bbs-label">
-                <span class="date">2019.8.29 11：51</span>
-                <span class="category"><a href="#" >校园资源</a></span>
-                <span class="comments"><a href="#" >3 条回复</a></span>
-                <span class="like-count">66</span>
-            </div>
 
-            <p id="bbs-content">即日起（8月7日）西北工业大学智慧迎新系统已经全面开放，各位新生注意登陆智慧迎新系统完善自己的入学报名相关信息，智慧迎新系统网址如下：http://yingxin.nwpu.edu.cn具体操作流程不太熟悉的同学可以进群欢迎加入西工大智慧迎新群，群聊号码：884533711，对于大家的问题我们会尽力解答 . . . <a class="readmore-link" href="#" id="bbs-readmore">更多</a></p>
+                <h3 class="post-title" id="bbs-title">
+                    <a href="#">新生必看的福利贴！！！满满的都是福利鸭</a>
+                </h3>
 
-        </article>
+                <div class="post-meta clearfix" id="bbs-label">
+                    <span class="date">2019.8.29 11：51</span>
+                    <span class="category"><a href="#" >校园资源</a></span>
+                    <span class="comments"><a href="#" >3 条回复</a></span>
+                    <span class="like-count">66</span>
+                </div>
 
-        <hr>
+                <p id="bbs-main-content">即日起（8月7日）西北工业大学智慧迎新系统已经全面开放，各位新生注意登陆智慧迎新系统完善自己的入学报名相关信息，智慧迎新系统网址如下：http://yingxin.nwpu.edu.cn具体操作流程不太熟悉的同学可以进群欢迎加入西工大智慧迎新群，群聊号码：884533711，对于大家的问题我们会尽力解答 . . . <a class="readmore-link" href="#" id="bbs-readmore">更多</a></p>
+
+            </article>
+            <hr>
+        </div>
+
     </div>
+    <div style="width: 100%">
+        <div id="pages" style="width: 69%;float: left;padding-left: 520px"></div>
+        <div id="moment" style="width: 31%;float:left"></div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
 </div>
 <h1><blockquote><a href="../主页/untitled1/index.html">返回首页   </a><a href="#top">返回顶部</a></blockquote></h1>
+<script>
+    var $div = $(".container");
+    var $show = $("#show");
+    var $pages = $("#pages");
+    var $moment= $("#moment");
+    var pgindex = 1;
+    var eachCnt = 4;
+    var boxes = $("div[name='box']");
+    var cnt = boxes.length;
+    var indexs = new Array(cnt);
+    for(var i=0; i<cnt; i++) {
+        indexs[i] = i;
+    }
+    var allPages = Math.ceil(cnt/eachCnt);
+    $(function() {
+        $pages.html("总共 " + allPages + " 页");
+        $moment.html("目前:第"+pgindex+"页");
+        showPage(1);
+        for(var i=0; i<allPages; i++) {
+            $pages.append("<a href=\"javascript:showPage('"+ (i+1) +"');\"> "+ (i+1) +" </a>");
+        }
+        $pages.append("<a href=\"javascript:gotopage(-1);\">上一页</a> <a href=\"javascript:gotopage(1);\">下一页</a>");
+
+    });
+
+    function gotopage(value){
+        try{
+            value=="-1"?showPage(pgindex-1):showPage(pgindex+1);
+        }catch(e){
+
+        }
+    }
+    function showPage(pageIndex)
+    {
+        if(pageIndex== 0 || pageIndex>=(allPages+1)) {
+            return;
+        }
+        var start = (pageIndex-1)*eachCnt;
+
+        var end = start + eachCnt;
+        end = end > cnt ? cnt : end;//16
+
+        var subIndexs = indexs.slice(start, end);
+        for(var i=0; i<cnt; i++) {
+            if(contains(i, subIndexs)) {
+                boxes.eq(i).show();
+            }else{
+                boxes.eq(i).hide();
+            }
+        }
+        pgindex = pageIndex;
+        $moment.empty();
+        $moment.html("目前:第"+pgindex+"页");
+    }
+
+    var contains = function (element, arr) {
+
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == element) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+</script>
 </body>
 </html>
