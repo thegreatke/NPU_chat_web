@@ -16,6 +16,26 @@
 			window.scrollTo(0, 1);
 		}
 	</script>
+
+	<script  type="text/javascript" src="js/jquery.cookie.js"></script>
+	<script type="text/javascript">
+		$(function(){
+// 	编写函数,在按键升起时触发,监测cookie中是否存在该用户名的key,如果有,则把value赋值给密码框
+					$("#login-username").keyup(function(){
+						var loginusername = $("#login-username").val();
+						if(loginusername != ""){
+							var longsword = $.cookie(login-username);
+							if(longsword!=null){
+								$("#login-password").val(longsword);
+								$("#jizhumima").attr("checked",true);
+							}
+						}
+
+					})
+				}
+		)
+	</script>
+
 <!-- //for-mobile-apps -->
 <!-- font-awesome icons -->
 <link rel="stylesheet" href="/static/css/font-awesome.min.css" />
@@ -72,7 +92,7 @@
 							<div class="agile_remember">
 								<div class="agile_remember_left">
 									<div class="check">
-										<label class="checkbox"><input type="checkbox" name="checkbox"><i> </i>remember me</label>
+										<label class="checkbox"><input type="checkbox" name="checkbox" value="1" id="jizhumima"><i> </i>remember me</label>
 									</div>
 								</div>
 								<div class="agile_remember_right">
