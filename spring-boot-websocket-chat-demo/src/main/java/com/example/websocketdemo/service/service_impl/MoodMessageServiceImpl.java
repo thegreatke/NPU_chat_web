@@ -33,14 +33,14 @@ public class MoodMessageServiceImpl implements MoodMessageService {
 
     //发布某一条心情留言,保存功能
     @Override
-    public void publishMoodMessage(String MoodMessageContent,String title, String pageName, String answerer) {
+    public void publishMoodMessage(String MoodMessageContent, String pageName, String answerer) {
 
         TimeUtil timeUtil = new TimeUtil();
         String nowStr = timeUtil.getFormatDateForFive();
         MoodMessageContent = JavaScriptCheck.javaScriptCheck(MoodMessageContent);//添加了前后<script>标签
-        MoodMessage moodMessage = new MoodMessage(pageName, userService.findIdByUsername(answerer), userService.findIdByUsername(SiteOwner.SITE_OWNER), nowStr, MoodMessageContent, title);
+        MoodMessage MoodMessage = new MoodMessage(pageName, userService.findIdByUsername(answerer), userService.findIdByUsername(SiteOwner.SITE_OWNER), nowStr, MoodMessageContent);
 
-        moodMessageMapper.publishMoodMessage(moodMessage);
+        moodMessageMapper.publishMoodMessage(MoodMessage);
 
     }
 
@@ -55,7 +55,6 @@ public class MoodMessageServiceImpl implements MoodMessageService {
             moodMessage.setMoodMessageContent(commentContent.substring(respondent.length() + 1));  //截取字符串的长度，决定起始位置
         }
         moodMessage.setRespondentId(userService.findIdByUsername(respondent));
-        moodMessage.setTitle(null);
         moodMessageMapper.publishMoodMessage(moodMessage);
         return moodMessage;
     }
@@ -184,28 +183,23 @@ public class MoodMessageServiceImpl implements MoodMessageService {
             if(moodMessage.getPId() != 0){     //回复非版主的情况添加@someone的效果
                 moodMessage.setMoodMessageContent("@" + userService.findUsernameById(moodMessage.getRespondentId()) + " " + moodMessage.getMoodMessageContent());
             }
-            jsonObject.put("id",moodMessage.getId());
-            jsonObject.put("pid",moodMessage.getPId());
-
-            jsonObject.put("pageName",moodMessage.getPageName());
-            jsonObject.put("title",moodMessage.getTitle());
-
+            jsonObject.put("pagePath",moodMessage.getPageName());
             jsonObject.put("answerer",userService.findUsernameById(moodMessage.getAnswererId()));
-            jsonObject.put("leaveWordDate",moodMessage.getMoodMessageDate());//.substring(0,10)
-            jsonObject.put("moodWordContent",moodMessage.getMoodMessageContent());
+            jsonObject.put("leaveWordDate",moodMessage.getMoodMessageDate().substring(0,10));
+            jsonObject.put("leaveWordContent",moodMessage.getMoodMessageContent());
             jsonArray.add(jsonObject);
         }
 
         returnJson.put("status",200);
         returnJson.put("result",jsonArray);
-//        JSONObject pageJson = new JSONObject();
-//        pageJson.put("pageNum",pageInfo.getPageNum());
-//        pageJson.put("pageSize",pageInfo.getPageSize());
-//        pageJson.put("total",pageInfo.getTotal());
-//        pageJson.put("pages",pageInfo.getPages());
-//        pageJson.put("isFirstPage",pageInfo.isIsFirstPage());
-//        pageJson.put("isLastPage",pageInfo.isIsLastPage());
-//        returnJson.put("pageInfo",pageJson);
+        JSONObject pageJson = new JSONObject();
+        pageJson.put("pageNum",pageInfo.getPageNum());
+        pageJson.put("pageSize",pageInfo.getPageSize());
+        pageJson.put("total",pageInfo.getTotal());
+        pageJson.put("pages",pageInfo.getPages());
+        pageJson.put("isFirstPage",pageInfo.isIsFirstPage());
+        pageJson.put("isLastPage",pageInfo.isIsLastPage());
+        returnJson.put("pageInfo",pageJson);
         return returnJson;
     }
 

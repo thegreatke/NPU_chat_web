@@ -40,8 +40,7 @@ public class MoodController {
     @PostMapping("/publishMoodMessage")
     public JSONObject publishMoodMessage(@RequestParam("moodMessageContent") String moodMessageContent,
                                           @RequestParam("pageName") String pageName,
-                                          @RequestParam ("answerer") String answerer,
-                                            @RequestParam ("title") String title){
+                                          @RequestParam ("answerer") String answerer){
         JSONObject jsonObject;
         if (answerer ==null)
         {logger.info("please input something");
@@ -51,7 +50,7 @@ public class MoodController {
             return jsonObject;
         }
 
-        moodMessageService.publishMoodMessage(moodMessageContent,title,pageName, answerer);
+        moodMessageService.publishMoodMessage(moodMessageContent, pageName, answerer);
         return moodMessageService.findAllMoodMessage(pageName, 0, answerer);
 
     }
@@ -84,7 +83,7 @@ public class MoodController {
                                                @RequestParam ("answerer") String answerer){
         String username = null;
         JSONObject jsonObject;
-        moodMessage.setPageName("Reply");
+
         moodMessage.setAnswererId(userService.findIdByUsername(answerer));
         moodMessage.setPId(Integer.parseInt(parentId));  //去除了substring的前面的一行缩进
         moodMessage.setMoodMessageContent(JavaScriptCheck.javaScriptCheck(moodMessage.getMoodMessageContent()));
@@ -97,11 +96,11 @@ public class MoodController {
     /**
      * 获得最新的（每个页面为n条）的所有留言，使用了pagehelper分页助手
      */
-    @GetMapping("/allMoodWord")
+    @GetMapping("/newMoodWord")
     @ResponseBody
-    public JSONObject newMoodWord(){
-        //row, pagenum
-        return moodMessageService.findFiveNewComment(200,1);
+    public JSONObject newMoodWord(@RequestParam("rows") String rows,
+                                   @RequestParam("pageNum") String pageNum){
+        return moodMessageService.findFiveNewComment(Integer.parseInt(rows),Integer.parseInt(pageNum));
     }
 
 

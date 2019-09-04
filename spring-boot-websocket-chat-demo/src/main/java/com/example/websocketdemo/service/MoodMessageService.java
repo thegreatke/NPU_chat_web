@@ -25,7 +25,7 @@ public interface MoodMessageService {
      * @param answerer 留言者
      */
     @Transactional
-    void publishMoodMessage(String MoodMessageContent, String title ,String pageName, String answerer);
+    void publishMoodMessage(String MoodMessageContent, String pageName, String answerer);
 
     /**
      * 保存留言回复信息

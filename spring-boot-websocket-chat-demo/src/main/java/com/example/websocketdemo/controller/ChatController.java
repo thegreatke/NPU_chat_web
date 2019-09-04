@@ -55,7 +55,6 @@ public class ChatController {
         return "forum";
     }
 
-
     @RequestMapping("/foruminner")
     public String foruminner(){
         return "foruminner";
@@ -66,12 +65,9 @@ public class ChatController {
         return "test";
     }
 
-
-
-    @RequestMapping("/test3")
-
-    public String test3(){
-        return "test3";
+    @RequestMapping("/test2")
+    public String test2(){
+        return "test2";
     }
 
 
