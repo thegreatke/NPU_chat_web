@@ -54,15 +54,21 @@ import lombok.Data;
          */
         private String MoodMessageContent;
 
+        /**
+         * 留言标题
+         */
+        private String title;
+
 
 
         //专用构造函数
-        public MoodMessage(String pageName, int answererId, int respondentId, String leaveMessageDate, String leaveMessageContent) {
+        public MoodMessage(String pageName, int answererId, int respondentId, String leaveMessageDate, String leaveMessageContent,String title) {
             this.pageName = pageName;
             this.answererId = answererId;
             this.RespondentId = respondentId;
             this.MoodMessageDate = leaveMessageDate;
             this.MoodMessageContent = leaveMessageContent;
+            this.title = title;
         }
 
         public MoodMessage() {
