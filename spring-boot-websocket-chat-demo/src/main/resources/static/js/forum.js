@@ -210,7 +210,7 @@ function replayLoading(){
                         "        </div>\n" +
                         "        <div class=\"post-meta clearfix\" id=\"bbs-label\" style=\"float: right\">\n" +
                         "            <span class=\"date\">"+date+"</span>\n" +
-                        "            <span class=\"category\"><a href=\"#\" >"+pageName+"</a></span>\n" +
+                        "            <span class=\"category\"><a  >"+pageName+"</a></span>\n" +
                         "            <span class=\"like-count\" ><a onclick='nice()' id=\"good\">"+likes+"</a></span>\n" +
                         "        </div>\n" +
                         "    </article>\n" +
@@ -296,7 +296,7 @@ function replay(){
                         "        <div class=\"post-meta clearfix\" id=\"bbs-label\" style=\"float: right\">\n" +
                         "            <span class=\"date\">"+date+"</span>\n" +
                         "            <span class=\"category\"><a href=\"#\" >"+pageName+"</a></span>\n" +
-                        "            <span class=\"like-count\"><a href=\"\" id=\"good\">"+likes+"</a></span>\n" +
+                        // "            <span class=\"like-count\"><a href=\"\" id=\"good\">"+likes+"</a></span>\n" +
                         "        </div>\n" +
                         "    </article>\n" +
                         "    <hr>";
@@ -380,6 +380,7 @@ function nice() {
         success: function (data) {
             if(data==-2) alert("已经点过赞！");
             else alert("点赞成功！");
+            window.location.href="foruminner";
         }
     });
 }
