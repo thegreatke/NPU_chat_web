@@ -8,7 +8,6 @@ function getid(str) {
         data:{},
         datatype:"string",
         success:function() {
-
         }
         })
 }
@@ -81,6 +80,8 @@ function fenye() {
 
 
 }
+
+
 function  loading(){
 
     $.ajax({
@@ -104,6 +105,7 @@ function  loading(){
                     var pageName=result[i].pageName;
                     var content=result[i].moodWordContent;
                     var date=result[i].leaveWordDate;
+                    var likes=result[i].likes;
                     var newHtml="        <div class=\"box\" name=\"box\">\n" +
                         "            <article class=\"format-standard type-post hentry clearfix\" ground>\n" +
                         "\n" +
@@ -115,7 +117,7 @@ function  loading(){
                         "                <div class=\"post-meta clearfix\" id=\"bbs-label\">\n" +
                         "                    <span class=\"date\">"+date+"</span>\n" +
                         "                    <span class=\"category\"><a href=\"#\"></a>"+pageName+"</span>\n" +
-                        "                    <span class=\"like-count\">66</span>\n" +
+                        "                    <span id='like' class=\"like-count\" onclick='getid()'>"+likes+"</span>\n" +
                         "                </div>\n" +
                         "\n" +
                         "                <p id=\"bbs-main-content\">"+content+" <a class=\"readmore-link\" href=\"#\" id=\"bbs-readmore\">更多</a></p>\n" +
@@ -137,6 +139,11 @@ function  loading(){
         }
     })
 }
+
+function lik() {
+
+}
+
 
 function replayLoading(){
     //主贴
