@@ -30,12 +30,22 @@ public class ChatController {
 
     @MessageMapping("/chat.addUser")
     //    @SendTo("/topic/public")
+    public void addUser( @Payload ChatMessage chatMessage) { //Payload 有效载荷的意思，便于理解
+        String destination = "/topic/" + chatMessage.getRoom();
+
+        messagingTemplate.convertAndSend(destination, chatMessage);
+
+    }
+
+    @MessageMapping("/chat.sendMessageOneLine")
+    //    @SendTo("/topic/public")
     public void sendMessageOneLine( @Payload ChatMessage chatMessage) { //Payload 有效载荷的意思，便于理解
         String destination = "/topic/" + chatMessage.getRoom();
 
         messagingTemplate.convertAndSend(destination, chatMessage);
 
     }
+
 
     @MessageMapping("/chat.addUserOneLine")
     public void addUserOneLine(@Payload ChatMessage chatMessage,
@@ -46,6 +56,9 @@ public class ChatController {
         String destination = "/topic/" + chatMessage.getRoom();
 
         messagingTemplate.convertAndSend(destination, chatMessage);}
+
+
+
 
 
     @RequestMapping("/chat")
