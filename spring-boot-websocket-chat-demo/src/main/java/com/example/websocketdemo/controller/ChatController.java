@@ -101,10 +101,10 @@ public class ChatController {
 
 
 
-    @RequestMapping("/test3")
+    @RequestMapping("/person")
 
-    public String test3(){
-        return "test3";
+    public String person(){
+        return "person";
     }
 
 
