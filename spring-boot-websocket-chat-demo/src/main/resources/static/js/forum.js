@@ -106,6 +106,7 @@ function  loading(){
                     var content=result[i].moodWordContent;
                     var date=result[i].leaveWordDate;
                     var likes=result[i].likes;
+                    alert(likes);
                     var newHtml="        <div class=\"box\" name=\"box\">\n" +
                         "            <article class=\"format-standard type-post hentry clearfix\" ground>\n" +
                         "\n" +
@@ -210,7 +211,7 @@ function replayLoading(){
                         "        <div class=\"post-meta clearfix\" id=\"bbs-label\" style=\"float: right\">\n" +
                         "            <span class=\"date\">"+date+"</span>\n" +
                         "            <span class=\"category\"><a href=\"#\" >"+pageName+"</a></span>\n" +
-                        "            <span class=\"like-count\"><a href=\"\" id=\"good\">"+likes+"</a></span>\n" +
+                        "            <span class=\"like-count\" ><a onclick='nice()' id=\"good\">"+likes+"</a></span>\n" +
                         "        </div>\n" +
                         "    </article>\n" +
                         "    <hr>";
@@ -310,4 +311,75 @@ function replay(){
             alert(XMLHttpRequest.responseText);
         }
     })
+}
+
+function niceid() {
+    var id='';
+    $.ajax({
+        type: "GET",
+        url: "/getid",
+        data: {},
+        async:false,
+        datatype: "string",
+        success: function (data) {
+            id=data;
+        }
+    });
+    return id;
+
+}
+
+
+
+function nicename() {
+    var name='';
+    $.ajax({
+        type: "GET",
+        url: "/getname",
+        data: {},
+        async:false,
+        datatype: "string",
+        success: function (data) {
+            name=data;
+        }
+    });
+    return name;
+}
+function nice() {
+    var name=nicename();
+    var id=niceid();
+    var pageName='';
+    $.ajax({
+        type:"GET",
+        url:"/allMoodWord",
+        data:{},
+        async:false,
+        datatype:"JSON",
+        success:function(data) {
+            var a = JSON.stringify(data);
+            var b = eval("(" + a + ")");
+            var result = b.result;
+
+            for (var i = 0; i < result.length; i++) {
+                if (id == result[i].id) {
+
+                    pageName=result[i].pageName;
+                    break;
+                }
+            }
+        }
+    });
+
+
+                $.ajax({
+        type: "GET",
+        url: "/addMoodMessageLike?pageName="+pageName+"&respondentId="+id+"&answerer="+name,
+        data: {},
+        async:false,
+        datatype: "string",
+        success: function (data) {
+            if(data==-2) alert("已经点过赞！");
+            else alert("点赞成功！");
+        }
+    });
 }
