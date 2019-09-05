@@ -31,16 +31,14 @@
       }
 
       body:before {
-          height: 100%;
+          height: 50%;
           width: 100%;
           position: absolute;
           top: 0;
           left: 0;
-          background: url(../../static/images/library.jpeg);
+          background: #128ff2;
           content: "";
-          z-index: -1;
-          -webkit-filter: blur(3px);
-          filter: blur(3px);
+          z-index: 0;
       }
 
       .clearfix:after {
@@ -104,13 +102,13 @@
       }
 
       button.primary {
-          background-color: #F38920;
+          background-color: #128ff2;
           box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
           color: #fff;
       }
 
       button.accent {
-          background-color: #F38920;
+          background-color: #ff4743;
           box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
           color: #fff;
       }
@@ -307,11 +305,6 @@
               font-size: 1.1em;
           }
       }
-	
-      #column {
-          background: white;
-          
-      }
   </style>
   <body>
     <noscript>
@@ -320,7 +313,6 @@
 
     <div id="username-page">
         <div class="username-page-container">
-            <a href="/index">	<img src="../../static/images/chat-delete.png" style="float:left; " height="30" width="30" /> </a>
             <h1 class="title">输入你的昵称</h1>
             <form id="usernameForm" name="usernameForm">
                 <div class="form-group">
@@ -332,20 +324,17 @@
                 </div>
                 <!--test-->
                 <div class="form-group">
-                    <button type="submit" class="accent username-submit">开始学习交流</button>
+                    <button type="submit" class="accent username-submit">Start Chatting</button>
                 </div>
             </form>
         </div>
     </div>
 
     <div id="chat-page" class="hidden">
-        <div id="column" class="chat-container">
+        <div class="chat-container">
             <div class="chat-header">
-               <a href="/chat">	<img src="../../static/images/chat-delete.png" style="float:left; " height="30" width="30" /> </a>
                 <h2>NPU匿名聊天Demo</h2>
-                
             </div>
-            
             <div class="connecting">
                 Connecting...
             </div>
