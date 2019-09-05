@@ -1,7 +1,6 @@
 package com.example.websocketdemo.controller;
 
 import com.example.websocketdemo.model.ChatMessage;
-import com.example.websocketdemo.model.Id;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -9,10 +8,7 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by great_KE on 24/07/17.
@@ -111,10 +107,10 @@ public class ChatController {
 
 
 
-    @RequestMapping("/person")
+    @RequestMapping("/zhuye")
 
-    public String person(){
-        return "person";
+    public String zhuye(){
+        return "personalindex";
     }
 
 
@@ -124,6 +120,10 @@ public class ChatController {
         return "post";
     }
 
+    @RequestMapping("/person")
 
+    public String person(){
+        return "person";
+    }
 
 }
