@@ -99,14 +99,60 @@
 
 </div>
 
+
+
+
 <!--回复按钮区域-->
 <div align="center">
     <!--写回复区-->
     <input id="txt" style="height: 200px;width: 600px;font-size: 18px;text-align: center;" value	="点击回复" onClick="javascript:this.value='' " ></input>
 
+    <script type="text/javascript" src="../static/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.cookie.js"></script>
+    <script>
+
+        function test(mood,str,answerer) {
+            console.log(mood);
+            console.log(str);
+           // console.log(answerer);
+            $.ajax({
+                type:"POST",
+                url:"/publishMoodMessageReply?MoodMessageContent="+mood+"&parentId="+str+"&answerer="+answerer,
+                data:{},
+                datatype:"string",
+                success:function(data){
+                    //alert(data);
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest.responseText);
+                }
+            })
+        }
+        function pos() {
+            var answerer = $.cookie("a");
+            //console.log(answerer);
+            var mood = $("#txt").val();
+            var udid ;
+            //var m = JSON.parse(answerer);
+            $.ajax({
+                type: "GET",
+                url: "/getid",
+                data: {},
+                datatype: "string",
+                success: function (data) {
+                    udid=data;
+                    test(mood,udid,answerer);
+                   // alert(udid);
+                }
+            });
+        }
+
+    </script>
+
     <!--提交按钮-->
-    <input id="btn1" type="button" value="发表" style="height:70px;width: 130px;font-size: 20px;color: #FFFFFF;background: #439EFF" />
+    <input id="btn1" type="submit" onclick="pos()" value="发表" style="height:70px;width: 130px;font-size: 20px;color: #FFFFFF;background: #439EFF" />
 </div>
+
 
 <div class="jumbotron text-center" style="margin-bottom:0">
     <p>底部内容</p>
