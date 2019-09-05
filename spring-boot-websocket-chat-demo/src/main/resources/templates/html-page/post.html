@@ -11,6 +11,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="../../static/bootstrap/js/bootstrap.min.js"></script>
     <script src="../../static/js/forum.js"></script>
+    <script src="../../static/js/postes.js"></script>
 
     <style type="text/css">
         .s li{   background-color: #ffffff;   padding: 10px 16px; border: solid 1px #D9D9D9;  float: left;   list-style: none;   color:#FFFFFF; }
@@ -72,32 +73,39 @@
 	<!--标题-->
 	<div id="title" style="width: 100%" align="center">
 		<div style="width: 50%"><p style="font-size: 30px;float: left;padding-top: 10px;color: #3A3A3A">标题:</p></div>
-		<div style="width: 50%"><textarea maxlength="20" rows="1" required style="width: 800px;font-size: 30px"></textarea></div>
+		<div style="width: 50%"><textarea id="titleone" maxlength="20" rows="1" required style="width: 800px;font-size: 30px"></textarea></div>
 		</div>
 	<!--正文-->
 	<div id="textdiv" style="width: 100%" align="center">
 		<div style="width: 50%"><p style="font-size: 30px;float: left;padding-top: 10px;color: #3A3A3A">正文:</p></div>
-		<div style="width: 50%"><textarea maxlength="1000" rows="12" required style="width: 800px;font-size: 15px"></textarea></div>
+		<div style="width: 50%"><textarea id="textdivone" maxlength="1000" rows="12" required style="width: 800px;font-size: 15px"></textarea></div>
 		</div>
 	<!--标签-->
 		<br>
-	<div id="tagdiv" align="center">
-		<div align="center"><p style="display: inline;font-size: 20px">请选择标签:</p><p id="tag" style="display: inline;font-size: 20px"></p></div>
-		<button class="tag" id="ziyuan" value="校园资源">校园资源</button><button class="tag" id="yule" value="休闲娱乐">休闲娱乐</button><button class="tag" id="tucao" value="校园吐槽">校园吐槽</button><button class="tag" id="qiuzhu" value="校园求助">校园求助</button><button class="tag" id="jiaoyou" value="校园交友">校园交友</button>
-		<script>
-			var $tag=$("#tag");
-			$(function () {
-            //按钮点击事件
-            $(".tag").click(function () {
-                var node =$(this).val();
-                $("#tag").html(node);
-            });
-        });
-		</script>
-		</div>
+<!--	<div id="tagdiv" align="center">-->
+<!--		<div align="center"><p style="display: inline;font-size: 20px">请选择标签:</p><p id="tag" style="display: inline;font-size: 20px"></p></div>-->
+<!--		<button class="tag" id="ziyuan" value="校园资源">校园资源</button><button class="tag" id="yule" value="休闲娱乐">休闲娱乐</button><button class="tag" id="tucao" value="校园吐槽">校园吐槽</button><button class="tag" id="qiuzhu" value="校园求助">校园求助</button><button class="tag" id="jiaoyou" value="校园交友">校园交友</button>-->
+
+
+<!--        <script>-->
+<!--			var tagg=$("#tag");-->
+<!--			$(function () {-->
+<!--            //按钮点击事件-->
+<!--            $(".tag").click(function () {-->
+<!--                var node =$(this).val();-->
+<!--                $("#tag").innerHTML=node;-->
+<!--            });-->
+<!--        });-->
+<!--		</script>-->
+<!--		</div>-->
+        <div  style="width: 100%" align="center">
+            <div style="width: 50%"><p style="font-size: 30px;float: left;padding-top: 10px;color: #3A3A3A">标签:</p></div>
+            <div style="width: 50%"><textarea id="tag" maxlength="10" rows="1" required style="width: 800px;font-size: 5px"></textarea></div>
+        </div >
+
 		<br>
 		<div id="postbutton" align="center">
-		<input type="button" value="发表" style="width: 180px; height: 80px;font-size: 23px; background:#439EFF;color: #FFFFFF">
+		<input type="button" value="发表" style="width: 180px; height: 80px;font-size: 23px; background:#439EFF;color: #FFFFFF" onclick="postes()"/>
 		</div>
 	</div>
 </body>
