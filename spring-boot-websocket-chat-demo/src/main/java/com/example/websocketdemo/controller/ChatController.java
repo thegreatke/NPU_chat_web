@@ -29,16 +29,18 @@ public class ChatController {
 //@Payload
 
     @MessageMapping("/chat.addUser")
-    //    @SendTo("/topic/public")
-    public void addUser( @Payload ChatMessage chatMessage) { //Payload 有效载荷的意思，便于理解
-        String destination = "/topic/" + chatMessage.getRoom();
-
-        messagingTemplate.convertAndSend(destination, chatMessage);
-
+    @SendTo("/topic/public")
+    public ChatMessage addUser(@Payload ChatMessage chatMessage,
+                               SimpMessageHeaderAccessor headerAccessor) {
+        // Add username in web socket session
+        headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
+        return chatMessage;
     }
 
+
+    //实现单聊
     @MessageMapping("/chat.sendMessageOneLine")
-    //    @SendTo("/topic/public")
+//    @SendTo("/topic/public")
     public void sendMessageOneLine( @Payload ChatMessage chatMessage) { //Payload 有效载荷的意思，便于理解
         String destination = "/topic/" + chatMessage.getRoom();
 
@@ -55,9 +57,9 @@ public class ChatController {
         headerAccessor.getSessionAttributes().put("room", chatMessage.getRoom());
         String destination = "/topic/" + chatMessage.getRoom();
 
-        messagingTemplate.convertAndSend(destination, chatMessage);}
+        messagingTemplate.convertAndSend(destination, chatMessage);
 
-
+    }
 
 
 
