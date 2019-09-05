@@ -31,16 +31,14 @@
       }
 
       body:before {
-          height: 95%;
+          height: 50%;
           width: 100%;
           position: absolute;
           top: 0;
           left: 0;
-          background: url(../../static/images/chat-2.png);
+          background: #128ff2;
           content: "";
-          z-index: -1;
-          -webkit-filter: blur(3px);
-          filter: blur(3px);
+          z-index: 0;
       }
 
       .clearfix:after {
@@ -110,7 +108,7 @@
       }
 
       button.accent {
-          background-color: #006cff;
+          background-color: #ff4743;
           box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
           color: #fff;
       }
@@ -307,11 +305,6 @@
               font-size: 1.1em;
           }
       }
-
-      #column {
-          background: grey;
-          opacity:0.4;
-      }
   </style>
   <body>
     <noscript>
@@ -331,14 +324,14 @@
                 </div>
                 <!--test-->
                 <div class="form-group">
-                    <button type="submit" class="accent username-submit">开始学习交流</button>
+                    <button type="submit" class="accent username-submit">Start Chatting</button>
                 </div>
             </form>
         </div>
     </div>
 
     <div id="chat-page" class="hidden">
-        <div id="column" class="chat-container">
+        <div class="chat-container">
             <div class="chat-header">
                <!--<a href="/chat">	<img src="../../static/images/chat-delete.png" style="float:left; " height="30" width="30" /> </a>-->
 
