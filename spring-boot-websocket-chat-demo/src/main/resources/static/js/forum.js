@@ -178,6 +178,7 @@ function replayLoading(){
                     var userName=result[i].answerer;
                     var content=result[i].moodWordContent;
                     var date=result[i].leaveWordDate;
+                    var likes=result[i].likes;
                     var newHtml=" <article class=\"format-standard type-post hentry clearfix content\">\n" +
                         "\n" +
                         "        <h1 class=\"post-mian-title\" id=\"bbs-title\" >\n" +
@@ -209,7 +210,7 @@ function replayLoading(){
                         "        <div class=\"post-meta clearfix\" id=\"bbs-label\" style=\"float: right\">\n" +
                         "            <span class=\"date\">"+date+"</span>\n" +
                         "            <span class=\"category\"><a href=\"#\" >"+pageName+"</a></span>\n" +
-                        "            <span class=\"like-count\"><a href=\"\" id=\"good\">66</a></span>\n" +
+                        "            <span class=\"like-count\"><a href=\"\" id=\"good\">"+likes+"</a></span>\n" +
                         "        </div>\n" +
                         "    </article>\n" +
                         "    <hr>";
@@ -262,6 +263,7 @@ function replay(){
                     var userName=result[i].answerer;
                     var content=result[i].moodWordContent;
                     var date=result[i].leaveWordDate;
+                    var likes=result[i].likes;
                     var newHtml=" <article class=\"format-standard type-post hentry clearfix content\">\n" +
                         "\n" +
                         "        <h1 class=\"post-mian-title\" id=\"bbs-title\" >\n" +
@@ -293,7 +295,7 @@ function replay(){
                         "        <div class=\"post-meta clearfix\" id=\"bbs-label\" style=\"float: right\">\n" +
                         "            <span class=\"date\">"+date+"</span>\n" +
                         "            <span class=\"category\"><a href=\"#\" >"+pageName+"</a></span>\n" +
-                        "            <span class=\"like-count\"><a href=\"\" id=\"good\">66</a></span>\n" +
+                        "            <span class=\"like-count\"><a href=\"\" id=\"good\">"+likes+"</a></span>\n" +
                         "        </div>\n" +
                         "    </article>\n" +
                         "    <hr>";

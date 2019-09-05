@@ -13,9 +13,20 @@
         $(function () {
             //按钮点击事件
             $("#btn1").click(function () {
-                var node = "<div style='padding-right:150px; padding-left:150px;padding-top: 10px;' class='respond'><article class='format-standard type-post hentry clearfix'><div style='width: 100%' class='content'><div style='width: 95%;float: right;padding-left: 0px'><p id='bbs-content'>"+$("#txt").val()+"</p></div><div class='d_author' style='width: 5%'><ul class='user'><li class='icon'><div><a style='' class='p_author'><img username='用户' width='100%' class='usericon' src='../static/images/forum1.jpg'/></a></div></li><li class='username' style='text-align: center;font-size: 18px;'><a href='javascript:void(0)'>用户</a></li></ul></div></div></article><hr></div>";
-                $("#reply").append(node);
-                $("#txt").val("点击回复");
+                var uid;
+                $.ajax({
+                    type: "GET",
+                    url: "/getname",
+                    data: {},
+                    datatype: "string",
+                    success: function (data) {
+                        uid=data;
+                        var node = "<div style='padding-right:150px; padding-left:150px;padding-top: 10px;' class='respond'><article class='format-standard type-post hentry clearfix'><div style='width: 100%' class='content'><div style='width: 95%;float: right;padding-left: 0px'><p id='bbs-content'>"+$("#txt").val()+"</p></div><div class='d_author' style='width: 5%'><ul class='user'><li class='icon'><div><a style='' class='p_author'><img username='用户' width='100%' class='usericon' src='../static/images/forum1.jpg'/></a></div></li><li class='username' style='text-align: center;font-size: 18px;'><a href='javascript:void(0)'>"+uid+"</a></li></ul></div></div></article><hr></div>";
+                        $("#reply").append(node);
+                        $("#txt").val("点击回复");
+                    }
+                })
+
             });
         });
         $(function(){
@@ -128,8 +139,24 @@
                 }
             })
         }
+        function mo(){
+            var uname='';
+            $.ajax({
+                type: "GET",
+                url: "/getname",
+                data: {},
+                async:false,
+                datatype: "string",
+                success: function (data) {
+                    uname =data;
+                }
+            });
+            // alert(uname);
+            return uname;
+        }
+
         function pos() {
-            var answerer = npu;
+            var answerer = mo();
             //console.log(answerer);
             var mood = $("#txt").val();
             var udid ;

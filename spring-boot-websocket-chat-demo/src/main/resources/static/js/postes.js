@@ -1,3 +1,20 @@
+
+function more(){
+    var uname='';
+    $.ajax({
+        type: "GET",
+        url: "/getname",
+        data: {},
+        async:false,
+        datatype: "string",
+        success: function (data) {
+            uname =data;
+        }
+    });
+    // alert(uname);
+    return uname;
+}
+
 function  postes() {
 
     var tit=$('#titleone').val();
@@ -7,7 +24,7 @@ function  postes() {
 
     $.ajax({
         type:"POST",
-        url:"/publishMoodMessage?moodMessageContent="+text+"&pageName="+tag+"&answerer=npu&title="+tit,
+        url:"/publishMoodMessage?moodMessageContent="+text+"&pageName="+tag+"&answerer="+more()+"&title="+tit,
         data:{},
         datatype:"string",
         success:function(data){

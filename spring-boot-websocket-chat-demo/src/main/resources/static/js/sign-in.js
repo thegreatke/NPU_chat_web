@@ -4,6 +4,15 @@ function  signIn() {
     var password=$('#login-password').val();
     var result;
 
+    $.ajax({
+        type:"GET",
+        url:"/setname?name="+userName,
+        data:{},
+        datatype:"string",
+        success:function(data) {
+
+        }
+    })
 
     $.ajax({
         type:"POST",

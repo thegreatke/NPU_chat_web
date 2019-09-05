@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>个人主页</title>
-
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <style>
     body
@@ -66,10 +66,26 @@
         font-style:italic;
     }
 </style>
-<body>
+<script>
+    function  setname() {
+        var uid;
+        $.ajax({
+            type: "GET",
+            url: "/getname",
+            data: {},
+            datatype: "string",
+            success: function (data) {
+                uid=data;
+
+                document.getElementById("personindex").innerHTML=uid;
+            }
+        })
+    }
+</script>
+<body onload="setname()">
 <div id="top">
     <img height="100" id="image1" src="../static/images/2.jpg">
-    <h1 class="top"> hi xxx </h1>
+    <h1 class="top">  <span id="personindex"></span> </h1>
     <h2 class="top"> 欢迎进入你的个人主页 </h2>
     <br>
     <br>
@@ -90,4 +106,6 @@
     <h1>勇猛精进，敢为人先</h1>
     <h1>毅然果决，坚韧不拔</h1>
 </div>
+</body>
+
 </html>
