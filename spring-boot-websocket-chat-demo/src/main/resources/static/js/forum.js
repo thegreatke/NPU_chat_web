@@ -106,7 +106,7 @@ function  loading(){
                     var content=result[i].moodWordContent;
                     var date=result[i].leaveWordDate;
                     var likes=result[i].likes;
-                    alert(likes);
+                    // alert(likes);
                     var newHtml="        <div class=\"box\" name=\"box\">\n" +
                         "            <article class=\"format-standard type-post hentry clearfix\" ground>\n" +
                         "\n" +
