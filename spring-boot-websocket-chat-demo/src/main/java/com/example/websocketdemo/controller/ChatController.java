@@ -79,6 +79,11 @@ public class ChatController {
         return "welcome";
     }
 
+    @RequestMapping("/")
+    public String welcome_home(){
+        return "welcome";
+    }
+
     @RequestMapping("/forum")
     public String forum(){
         return "forum";
