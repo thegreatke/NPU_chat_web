@@ -68,8 +68,22 @@ public class LoginController {
     @ResponseBody
     public String xuqiu_02(){
 
-
         return id_class.getName();
+    }
+    @GetMapping("/setpagename")
+    @ResponseBody
+    public String xuqiu_03(@RequestParam("name") String name){
+
+        id_class.setPagename(name);
+        return name;
+    }
+
+    @GetMapping("/getpagename")
+    @ResponseBody
+    public String xuqiu_03(){
+
+
+        return id_class.getPagename();
     }
 
 
