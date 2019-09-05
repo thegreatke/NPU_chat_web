@@ -9,6 +9,7 @@
     <link rel='stylesheet' id='main-css-css'  href='/../static/css/main5152.css' type='text/css' media='all' />
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="../../static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../static/js/forum.js"></script>
 
     <style type="text/css">
         .s li{   background-color: #ffffff;   padding: 10px 16px; border: solid 1px #D9D9D9;  float: left;   list-style: none;   color:#FFFFFF; }
@@ -16,7 +17,7 @@
     </style>
 </head>
 
-<body>
+<body onload="loading()">
 <div id="myCarousel" class=" carousel slide   "  >
 
     <ol class="carousel-indicators" >
@@ -84,7 +85,7 @@
 <div>
 
   <!-- 整个容器-->
-    <div class="container" style="padding-right:150px; padding-left:150px;padding-top: 10px;">
+    <div class="container" id="container" style="padding-right:150px; padding-left:150px;padding-top: 10px;">
         <!--一个帖子-->
         <div class="box" name="box">
             <article class="format-standard type-post hentry clearfix" ground>
@@ -110,7 +111,9 @@
 
 
 
+
     </div>
+
     <div style="width: 100%">
         <div id="pages" style="width: 69%;float: left;padding-left: 520px"></div>
         <div id="moment" style="width: 31%;float:left"></div>
@@ -121,6 +124,7 @@
     <br>
 </div>
 <h1><blockquote><a href="index">返回首页   </a><a href="#top">返回顶部</a></blockquote></h1>
+
 <script>
     var $div = $(".container");
     var $show = $("#show");
@@ -153,6 +157,7 @@
 
         }
     }
+
     function showPage(pageIndex)
     {
         if(pageIndex== 0 || pageIndex>=(allPages+1)) {

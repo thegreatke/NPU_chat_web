@@ -1,6 +1,7 @@
 package com.example.websocketdemo.controller;
 
 
+import com.example.websocketdemo.model.Id;
 import com.example.websocketdemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
     @Autowired
     UserService userService;
-
+    @Autowired
+    private Id id_class;
 
     @RequestMapping("/login")
     @ResponseBody
@@ -36,6 +38,22 @@ public class LoginController {
         if (result == 1) return "regist successfully!";
         else if (result == 0) return "username is already exist, change one";
         else return "errors!";
+    }
+
+    @GetMapping("/setid")
+    @ResponseBody
+    public String xuqiu(@RequestParam("id") String id){
+
+        id_class.setId(id);
+        return id;
+    }
+
+    @GetMapping("/getid")
+    @ResponseBody
+    public String xuqiu(){
+
+
+        return id_class.getId();
     }
 
 
