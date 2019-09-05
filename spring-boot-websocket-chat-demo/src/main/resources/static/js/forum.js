@@ -1,9 +1,16 @@
 
-var userid=0;
+
 function getid(str) {
 
-            userid=str;
+    $.ajax({
+        type:"GET",
+        url:"/setid?id="+str,
+        data:{},
+        datatype:"string",
+        success:function() {
 
+        }
+        })
 }
 
 function  loading(){
@@ -33,7 +40,7 @@ function  loading(){
                         "\n" +
                         "\n" +
                         "                <h3 class=\"post-title\" id=\"bbs-title\">\n" +
-                        "                   <a href=\"forum\" id=\'"+id+"\ ' onclick='getid(this.id)'>"+title+"</a>\n" +
+                        "                   <a href=\"foruminner\" id=\'"+id+"\ ' onclick='getid(this.id)'>"+title+"</a>\n" +
                         "                </h3>\n" +
                         "\n" +
                         "                <div class=\"post-meta clearfix\" id=\"bbs-label\">\n" +
@@ -63,7 +70,16 @@ function  loading(){
 
 function replayLoading(){
     //主贴
-    var uid=userid;
+    var uid;
+    $.ajax({
+        type: "GET",
+        url: "/getid",
+        data: {},
+        datatype: "string",
+        success: function (data) {
+                uid=data;
+        }
+    })
     $.ajax({
         type:"GET",
         url:"/allMoodWord",
@@ -77,9 +93,9 @@ function replayLoading(){
             for(var i=0;i<result.length;i++)
             {
                 var id =result[i].id;
-                alert(uid);
+
                 if(uid==id){
-                    alert(uid);
+
                     var title=result[i].title;
                     var pageName=result[i].pageName;
                     var userName=result[i].answerer;
@@ -121,12 +137,12 @@ function replayLoading(){
                         "    </article>\n" +
                         "    <hr>";
                     document.getElementById("mainForum").innerHTML=newHtml;
-
+                    break;
                 }
-                break;
-                    replay();
-            }
 
+
+            }
+            replay();
 
         },
         error:function(XMLHttpRequest, textStatus, errorThrown) {
@@ -137,6 +153,17 @@ function replayLoading(){
 }
 
 function replay(){
+    var uid;
+    $.ajax({
+        type: "GET",
+        url: "/getid",
+        data: {},
+        datatype: "string",
+        success: function (data) {
+            uid=data;
+        }
+    })
+
     $.ajax({
         type:"GET",
         url:"/allMoodWord",
@@ -146,6 +173,8 @@ function replay(){
             var a= JSON.stringify(data);
             var b=eval("("+a+")");
             var result=b.result;
+
+
             for(var i=0;i<result.length;i++)
             {
 
@@ -159,7 +188,7 @@ function replay(){
                     var newHtml=" <article class=\"format-standard type-post hentry clearfix content\">\n" +
                         "\n" +
                         "        <h1 class=\"post-mian-title\" id=\"bbs-title\" >\n" +
-                        "            <a href=\"javascript:void(0);\">"+title+"</a>\n" +
+
                         "        </h1>\n" +
                         "        <div style=\"width: 100%\">\n" +
                         "            <div style=\"width: 95%;float: right;padding-left: 0px\">\n" +
@@ -191,8 +220,7 @@ function replay(){
                         "        </div>\n" +
                         "    </article>\n" +
                         "    <hr>";
-                    document.getElementById("replay").innerHTML = document.getElementById("replay").innerHTML +newHtml;
-
+                    document.getElementById("mainForum").innerHTML= document.getElementById("mainForum").innerHTML+newHtml;
                 }
 
             }

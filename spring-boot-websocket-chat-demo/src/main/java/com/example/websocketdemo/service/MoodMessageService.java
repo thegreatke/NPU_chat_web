@@ -32,7 +32,7 @@ public interface MoodMessageService {
      * @param MoodMessage
      */
     @Transactional
-    MoodMessage publishMoodMessageReply(MoodMessage MoodMessage, String respondent);
+    MoodMessage publishMoodMessageReply(MoodMessage MoodMessage, int pid);
 
     /**
      * 返回最新的留言回复
