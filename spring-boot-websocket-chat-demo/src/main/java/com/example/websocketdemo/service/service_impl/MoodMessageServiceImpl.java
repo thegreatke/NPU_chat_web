@@ -193,6 +193,8 @@ public class MoodMessageServiceImpl implements MoodMessageService {
             jsonObject.put("pageName",moodMessage.getPageName());
             jsonObject.put("title",moodMessage.getTitle());
 
+            jsonObject.put("likes",moodMessage.getLikes());
+
             jsonObject.put("answerer",userService.findUsernameById(moodMessage.getAnswererId()));
             jsonObject.put("leaveWordDate",moodMessage.getMoodMessageDate());//.substring(0,10)
             jsonObject.put("moodWordContent",moodMessage.getMoodMessageContent());
