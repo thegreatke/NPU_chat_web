@@ -7,7 +7,7 @@ function  postes() {
 
     $.ajax({
         type:"POST",
-        url:"127.0.0.1/publishMoodMessage?moodMessageContent="+text+"&pageName="+tag+"&answerer=npu&title="+tit,
+        url:"/publishMoodMessage?moodMessageContent="+text+"&pageName="+tag+"&answerer=npu&title="+tit,
         data:{},
         datatype:"string",
         success:function(data){
