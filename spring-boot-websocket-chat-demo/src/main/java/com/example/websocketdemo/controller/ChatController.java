@@ -118,7 +118,11 @@ public class ChatController {
     }
 
 
+    @RequestMapping("/post")
 
+    public String post(){
+        return "post";
+    }
 
 
 

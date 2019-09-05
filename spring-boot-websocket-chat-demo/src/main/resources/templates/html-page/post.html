@@ -1,5 +1,6 @@
-﻿<!doctype html>
+<!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>论坛</title>
@@ -16,8 +17,7 @@
         #thread_types{padding-left: 150px;}
     </style>
 </head>
-
-<body onload="loading()">
+<body>
 <div id="myCarousel" class=" carousel slide   "  >
 
     <ol class="carousel-indicators" >
@@ -66,65 +66,39 @@
         </div>
     </div>
 </nav>
-
-
-<div class="row">
-<div class="col-md-5">
-    <ul id="thread_types" class="s" >
-        <li><a href="#">全部</a></li>
-        <li><a href="#">校园资源</a></li>
-        <li><a href="#">休闲娱乐</a></li>
-        <li><a href="#">校园吐槽</a></li>
-    </ul>
-</div>
-<div class="col-md-4  pull-right    ">
-    <a href="" ><button class="btn btn-primary" onclick="">发帖</button></a>
-</div>
-<br>
-</div>
-<div>
-
-  <!-- 整个容器-->
-    <div class="container" id="container" style="padding-right:150px; padding-left:150px;padding-top: 10px;">
-        <!--一个帖子-->
-        <div class="box" name="box">
-            <article class="format-standard type-post hentry clearfix" ground>
-
-
-                <h3 class="post-title" id="bbs-title">
-                   <a href="#">新生必看的福利贴！！！满满的都是福利鸭 </a>
-                </h3>
-
-                <div class="post-meta clearfix" id="bbs-label">
-                    <span class="date">2019.8.29 11：51</span>
-                    <span class="category"><a href="#"></a> 校园资源</span>
-                    <span class="like-count">66</span>
-                </div>
-
-                <p id="bbs-main-content">即日起（8月7日）西北工业大学智慧迎新系统已经全面开放，各位新生注意登陆智慧迎新系统完善自己的入学报名相关信息，智慧迎新系统网址如下：http://yingxin.nwpu.edu.cn具体操作流程不太熟悉的同学可以进群欢迎加入西工大智慧迎新群，群聊号码：884533711，对于大家的问题我们会尽力解答 . . . <a class="readmore-link" href="#" id="bbs-readmore">更多</a></p>
-
-            </article>
-            <hr>
-        </div>
-
-
-
-
-
-
-    </div>
-
-    <div style="width: 100%">
-        <div id="pages" style="width: 69%;float: left;padding-left: 520px"></div>
-        <div id="moment" style="width: 31%;float:left"></div>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-</div>
-<h1><blockquote><a href="index">返回首页   </a><a href="#top">返回顶部</a></blockquote></h1>
-
-
+	<hr>
+	
+	<div id="postdiv">
+	<!--标题-->
+	<div id="title" style="width: 100%" align="center">
+		<div style="width: 50%"><p style="font-size: 30px;float: left;padding-top: 10px;color: #3A3A3A">标题:</p></div>
+		<div style="width: 50%"><textarea maxlength="20" rows="1" required style="width: 800px;font-size: 30px"></textarea></div>
+		</div>
+	<!--正文-->
+	<div id="textdiv" style="width: 100%" align="center">
+		<div style="width: 50%"><p style="font-size: 30px;float: left;padding-top: 10px;color: #3A3A3A">正文:</p></div>
+		<div style="width: 50%"><textarea maxlength="1000" rows="12" required style="width: 800px;font-size: 15px"></textarea></div>
+		</div>
+	<!--标签-->
+		<br>
+	<div id="tagdiv" align="center">
+		<div align="center"><p style="display: inline;font-size: 20px">请选择标签:</p><p id="tag" style="display: inline;font-size: 20px"></p></div>
+		<button class="tag" id="ziyuan" value="校园资源">校园资源</button><button class="tag" id="yule" value="休闲娱乐">休闲娱乐</button><button class="tag" id="tucao" value="校园吐槽">校园吐槽</button><button class="tag" id="qiuzhu" value="校园求助">校园求助</button><button class="tag" id="jiaoyou" value="校园交友">校园交友</button>
+		<script>
+			var $tag=$("#tag");
+			$(function () {
+            //按钮点击事件
+            $(".tag").click(function () {
+                var node =$(this).val();
+                $("#tag").html(node);
+            });
+        });
+		</script>
+		</div>
+		<br>
+		<div id="postbutton" align="center">
+		<input type="button" value="发表" style="width: 180px; height: 80px;font-size: 23px; background:#439EFF;color: #FFFFFF">
+		</div>
+	</div>
 </body>
 </html>

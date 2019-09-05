@@ -87,6 +87,7 @@ function  loading(){
         type:"GET",
         url:"/allMoodWord",
         data:{},
+        async:false,
         datatype:"JSON",
         success:function(data){
           var a= JSON.stringify(data);
@@ -125,8 +126,9 @@ function  loading(){
                     document.getElementById("container").innerHTML = document.getElementById("container").innerHTML+newHtml;
 
                 }
-                fenye();
+
             }
+         fenye();
 
 
         },
