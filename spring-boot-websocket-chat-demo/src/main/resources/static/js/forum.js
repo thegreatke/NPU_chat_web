@@ -188,7 +188,7 @@ function replay(){
                     var newHtml=" <article class=\"format-standard type-post hentry clearfix content\">\n" +
                         "\n" +
                         "        <h1 class=\"post-mian-title\" id=\"bbs-title\" >\n" +
-                      
+
                         "        </h1>\n" +
                         "        <div style=\"width: 100%\">\n" +
                         "            <div style=\"width: 95%;float: right;padding-left: 0px\">\n" +
