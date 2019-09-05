@@ -46,11 +46,14 @@ public class MoodMessageServiceImpl implements MoodMessageService {
 
     //保存对某个留言的回复。
     @Override
-    public MoodMessage publishMoodMessageReply(MoodMessage moodMessage, String respondent) {
+    public MoodMessage publishMoodMessageReply(MoodMessage moodMessage, int pid) {
         TimeUtil timeUtil = new TimeUtil();
         String nowStr = timeUtil.getFormatDateForFive();
         moodMessage.setMoodMessageDate(nowStr);
         String commentContent = moodMessage.getMoodMessageContent();
+        int id_local = moodMessageMapper.findAnswererIdByPid(pid);
+        String respondent = userService.findUsernameById(id_local);
+
         if('@' == commentContent.charAt(0)){
             moodMessage.setMoodMessageContent(commentContent.substring(respondent.length() + 1));  //截取字符串的长度，决定起始位置
         }

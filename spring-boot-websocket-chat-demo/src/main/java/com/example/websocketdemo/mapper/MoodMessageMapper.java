@@ -45,4 +45,7 @@ public interface MoodMessageMapper {
 
     @Select("select count(*) from leave_message_record")
     int countMoodMessageNum();
+
+    @Select("select answererId from leave_message_record where id = #{id}")
+    int findAnswererIdByPid(@Param("id") int id);
 }
