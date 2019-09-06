@@ -6,4 +6,4 @@
 
 3.加载完成后找到com.example.websocketdemo目录下的WebsocketDemoApplication.java，右键选择run。
 
-就可以开始测试接口，不需要本地安装mysql数据库,项目已经连接服务器上的mysql数据库。
+就可以开始了,访问localhost即可，不需要指定端口，默认80，不需要本地安装mysql数据库,项目已经连接服务器上的mysql数据库。
