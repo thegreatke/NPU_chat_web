@@ -72,7 +72,6 @@ public class MoodController {
 
 
 
-
     /**
      * 发布对留言中的评论
      * @return
@@ -82,8 +81,6 @@ public class MoodController {
                                                @RequestParam("parentId") String parentId, //父留言的主键PID
 //                                                  @RequestParam("respondent") String respondent,//被回复的人的name
                                                @RequestParam ("answerer") String answerer){
-
-
 
         String username = null;
         JSONObject jsonObject;
@@ -132,13 +129,4 @@ public class MoodController {
         return likes;
     }
 
-
-
-//    @RequestMapping("/moodplaza")
-//    public String get_moodplaza(Model model){
-//
-//        model.addAttribute("mood_01", "today is so beautiful day!");
-//        return "MoodPlaza";
-//
-//    }
 }

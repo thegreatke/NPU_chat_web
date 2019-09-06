@@ -100,17 +100,6 @@ public class ChatController {
         return "test";
     }
 
-    @RequestMapping("/a")
-    public String a(){
-        return "a";
-    }
-
-    @RequestMapping("/b")
-    public String b(){
-        return "b";
-    }
-
-
 
     @RequestMapping("/zhuye")
 
